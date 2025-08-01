@@ -29,13 +29,13 @@ ThemeData lightMode() {
       ),
     ),
     // primarySwatch: Colors.deepOrange,
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      type: BottomNavigationBarType.fixed,
-      elevation: 20,
-      selectedItemColor: Colors.deepOrange,
-      unselectedItemColor: Colors.grey,
-      backgroundColor: Colors.white,
-    ),
+    // bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    //   type: BottomNavigationBarType.fixed,
+    //   elevation: 20,
+    //   selectedItemColor: Colors.deepOrange,
+    //   unselectedItemColor: Colors.grey,
+    //   backgroundColor: Colors.white,
+    // ),
     brightness: Brightness.light,
   );
 }
@@ -59,12 +59,12 @@ ThemeData darkTheme() {
       ),
       elevation: 0,
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: HexColor("333739"),
-      selectedItemColor: Colors.deepOrange,
-      unselectedItemColor: Colors.grey,
-    ),
+    // bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    //   type: BottomNavigationBarType.fixed,
+    //   backgroundColor: HexColor("333739"),
+    //   selectedItemColor: Colors.deepOrange,
+    //   unselectedItemColor: Colors.grey,
+    // ),
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
         fontSize: 18,
