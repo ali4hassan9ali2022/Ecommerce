@@ -1,9 +1,12 @@
+import 'package:e_commerce/Core/Utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 ThemeData lightMode() {
   return ThemeData(
+    scaffoldBackgroundColor: AppColors.lightScaffoldColor,
+    cardColor: AppColors.lightCardColor,
     appBarTheme: const AppBarTheme(
       titleTextStyle: TextStyle(
         color: Colors.black,
@@ -25,8 +28,7 @@ ThemeData lightMode() {
         color: Colors.black,
       ),
     ),
-    primarySwatch: Colors.deepOrange,
-    scaffoldBackgroundColor: Colors.white,
+    // primarySwatch: Colors.deepOrange,
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       elevation: 20,
@@ -40,8 +42,9 @@ ThemeData lightMode() {
 
 ThemeData darkTheme() {
   return ThemeData(
-    primarySwatch: Colors.deepOrange,
-    scaffoldBackgroundColor: HexColor("333739"),
+    // primarySwatch: Colors.deepOrange,
+    scaffoldBackgroundColor: AppColors.darkScaffoldColor,
+    cardColor: Color.fromARGB(255, 13, 6, 37),
     appBarTheme: AppBarTheme(
       titleTextStyle: const TextStyle(
         color: Colors.white,

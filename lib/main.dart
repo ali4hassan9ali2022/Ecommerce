@@ -2,7 +2,7 @@ import 'package:e_commerce/Core/Helper/cache_helper.dart';
 import 'package:e_commerce/Core/Theme/theme_mode.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_cubit.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_state.dart';
-import 'package:e_commerce/home_view.dart';
+import 'package:e_commerce/Layout/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,9 +28,11 @@ class EcommerceAp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: lightMode(),
             darkTheme: darkTheme(),
-            themeMode: BlocProvider.of<ThemeCubit>(context).isDark ? ThemeMode.dark : ThemeMode.light,
+            themeMode: BlocProvider.of<ThemeCubit>(context).isDark
+                ? ThemeMode.dark
+                : ThemeMode.light,
             title: "E-commerce App",
-            home: HomeView(),
+            home: MainView(),
           );
         },
       ),
