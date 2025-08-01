@@ -4,18 +4,21 @@ import 'package:e_commerce/Core/theme_cubit/theme_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeInitial());
+  ThemeCubit() : super(ThemeInitial()) {
+    getTheme();
+  }
   bool isDark = false;
 
   Future<void> setTheme({required bool isValue}) async {
-   await CacheHelper().saveData(key: AppHelper.kDark, value: isValue);
+    await CacheHelper().saveData(key: AppHelper.kDark, value: isValue);
     isDark = isValue;
     emit(DarkTheme());
   }
 
-  Future<bool> getTheme() async{
-    isDark = await CacheHelper().getData(key: AppHelper.kDark) ?? false;
+  Future<bool> getTheme() async {
+    isDark =
+        await CacheHelper().getData(key: AppHelper.kDark) ?? false;
     emit(LightTheme());
     return isDark;
-  } 
+  }
 }

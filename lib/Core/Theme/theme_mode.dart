@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 ThemeData lightMode() {
   return ThemeData(
@@ -29,17 +30,18 @@ ThemeData lightMode() {
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
       elevation: 20,
-      selectedItemColor: Colors.black,
+      selectedItemColor: Colors.deepOrange,
       unselectedItemColor: Colors.grey,
       backgroundColor: Colors.white,
     ),
+    brightness: Brightness.light,
   );
 }
 
 ThemeData darkTheme() {
   return ThemeData(
     primarySwatch: Colors.deepOrange,
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: HexColor("333739"),
     appBarTheme: AppBarTheme(
       titleTextStyle: const TextStyle(
         color: Colors.white,
@@ -47,17 +49,17 @@ ThemeData darkTheme() {
         fontWeight: FontWeight.bold,
       ),
       iconTheme: const IconThemeData(color: Colors.white),
-      backgroundColor:Colors.black,
+      backgroundColor: HexColor("333739"),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
-        statusBarColor: Colors.black,
+        statusBarColor: HexColor("333739"),
       ),
       elevation: 0,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
-      backgroundColor:Colors.black,
-      selectedItemColor: Colors.grey[600],
+      backgroundColor: HexColor("333739"),
+      selectedItemColor: Colors.deepOrange,
       unselectedItemColor: Colors.grey,
     ),
     textTheme: const TextTheme(
@@ -67,5 +69,6 @@ ThemeData darkTheme() {
         color: Colors.white,
       ),
     ),
+    brightness: Brightness.dark,
   );
 }
