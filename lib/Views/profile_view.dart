@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class ProfileView extends StatelessWidget {
+  const ProfileView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "Home View",
+        "Profile View",
         style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
       ),
     );
