@@ -8,13 +8,14 @@ ThemeData lightMode() {
     scaffoldBackgroundColor: AppColors.lightScaffoldColor,
     cardColor: AppColors.lightCardColor,
     appBarTheme: const AppBarTheme(
+      
       titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
       iconTheme: IconThemeData(color: Colors.black),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.lightScaffoldColor,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
@@ -52,7 +53,7 @@ ThemeData darkTheme() {
         fontWeight: FontWeight.bold,
       ),
       iconTheme: const IconThemeData(color: Colors.white),
-      backgroundColor: HexColor("333739"),
+      backgroundColor: AppColors.darkScaffoldColor,
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
         statusBarColor: HexColor("333739"),

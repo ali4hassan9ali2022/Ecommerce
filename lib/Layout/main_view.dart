@@ -1,3 +1,4 @@
+import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Cubit/app_cubit/app_cubit.dart';
 import 'package:e_commerce/Cubit/app_cubit/app_state.dart';
 import 'package:e_commerce/Widgets/custom_navigation_bar.dart';
@@ -19,6 +20,10 @@ class MainView extends StatelessWidget {
         builder: (context, state) {
           var appCubit = BlocProvider.of<AppCubit>(context);
           return Scaffold(
+            appBar: AppBar(
+              title: Text("ShpeSmart"),
+              leading: Image.asset(Assets.imagesShoppingCart),
+            ),
             body: MainViewBody(),
             bottomNavigationBar: CustomNavigationBar(appCubit: appCubit),
           );
