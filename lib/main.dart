@@ -21,7 +21,7 @@ class EcommerceAp extends StatelessWidget {
       create: (context) => ThemeCubit(),
       child: BlocConsumer<ThemeCubit, ThemeState>(
         listener: (context, state) {
-          // TODO: implement listener
+          
         },
         builder: (context, state) {
           return MaterialApp(
