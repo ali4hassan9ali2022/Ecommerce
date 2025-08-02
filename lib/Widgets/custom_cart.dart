@@ -1,4 +1,5 @@
 import 'package:e_commerce/Core/Utils/assets.dart';
+import 'package:e_commerce/Widgets/quantity_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -59,7 +60,23 @@ class CustomCart extends StatelessWidget {
                           style: TextStyle(fontSize: 20, color: Colors.blue),
                         ),
                         OutlinedButton.icon(
-                          onPressed: () {},
+                          onPressed: () async {
+                            await showModalBottomSheet(
+                              backgroundColor: Theme.of(
+                                context,
+                              ).scaffoldBackgroundColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                              ),
+                              context: context,
+                              builder: (context) {
+                                return QuantityBottomSheet();
+                              },
+                            );
+                          },
                           label: Text("Oty: 6"),
                           icon: Icon(IconlyLight.arrowDown),
                         ),
