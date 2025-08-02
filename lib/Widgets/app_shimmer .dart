@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerText extends StatelessWidget {
-  const ShimmerText({super.key});
-
+  const ShimmerText({super.key, required this.text});
+final String text;
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
@@ -11,7 +11,7 @@ class ShimmerText extends StatelessWidget {
       baseColor: Colors.purple,
       highlightColor: Colors.red,
       child: Text(
-        "ShopSmart",
+        text,
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );

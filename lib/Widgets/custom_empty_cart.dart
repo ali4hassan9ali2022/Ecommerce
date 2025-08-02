@@ -3,15 +3,13 @@ import 'package:e_commerce/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class CustomEmptyCart extends StatelessWidget {
-  const CustomEmptyCart({
-    super.key,
-    required this.size,
-  });
+  const CustomEmptyCart({super.key});
 
-  final Size size;
+ 
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
@@ -45,7 +43,10 @@ class CustomEmptyCart extends StatelessWidget {
               borderRadius: 12,
               color: Colors.blueAccent,
               padding: EdgeInsets.all(20),
-              child: Text("Shop Now", style: TextStyle(fontSize: 22)),
+              child: Text(
+                "Shop Now",
+                style: TextStyle(fontSize: 22, color: Colors.white),
+              ),
             ),
           ],
         ),

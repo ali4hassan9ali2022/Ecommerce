@@ -13,6 +13,7 @@ class AppCubit extends Cubit<AppState> {
   late PageController pageController = PageController(
     initialPage: currentIndex,
   );
+  List<String> title = ["", "", "Shopping basket", "ShopSmart"];
   List<Widget> screens = [HomeView(), SearchView(), CartView(), ProfileView()];
   List<NavigationDestination> navigationDestinations = [
     NavigationDestination(icon: Icon(IconlyLight.home), label: "Home"),
@@ -35,5 +36,3 @@ class AppCubit extends Cubit<AppState> {
     emit(ChanageBottomNavBar());
   }
 }
-
-

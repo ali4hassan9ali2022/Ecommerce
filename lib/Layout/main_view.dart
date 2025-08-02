@@ -16,13 +16,25 @@ class MainView extends StatelessWidget {
       create: (context) => AppCubit(),
       child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {
-          // TODO: implement listener
+        
         },
         builder: (context, state) {
           var appCubit = BlocProvider.of<AppCubit>(context);
           return Scaffold(
             appBar: AppBar(
-              title: ShimmerText(),
+              actions: [
+                appCubit.currentIndex == 2
+                    ? IconButton.filled(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueAccent,
+                        ),
+                        onPressed: () {},
+                        color: Colors.white,
+                        icon: Icon(Icons.delete_forever_rounded),
+                      )
+                    : SizedBox(),
+              ],
+              title: ShimmerText(text: appCubit.title[appCubit.currentIndex]),
               leading: Image.asset(Assets.imagesShoppingCart),
             ),
             body: MainViewBody(),
