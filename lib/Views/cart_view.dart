@@ -1,3 +1,4 @@
+import 'package:e_commerce/Widgets/custom_empty_cart.dart';
 import 'package:flutter/material.dart';
 
 class CartView extends StatelessWidget {
@@ -5,11 +6,7 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Cart View",
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-      ),
-    );
+    var size = MediaQuery.of(context).size;
+    return CustomEmptyCart(size: size);
   }
 }
