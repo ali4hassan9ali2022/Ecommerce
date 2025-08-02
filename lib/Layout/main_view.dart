@@ -1,6 +1,7 @@
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Cubit/app_cubit/app_cubit.dart';
 import 'package:e_commerce/Cubit/app_cubit/app_state.dart';
+import 'package:e_commerce/Widgets/app_shimmer%20.dart';
 import 'package:e_commerce/Widgets/custom_navigation_bar.dart';
 import 'package:e_commerce/Widgets/main_view_body.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class MainView extends StatelessWidget {
           var appCubit = BlocProvider.of<AppCubit>(context);
           return Scaffold(
             appBar: AppBar(
-              title: Text("ShpeSmart"),
+              title: ShimmerText(),
               leading: Image.asset(Assets.imagesShoppingCart),
             ),
             body: MainViewBody(),

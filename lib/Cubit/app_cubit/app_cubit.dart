@@ -37,10 +37,3 @@ class AppCubit extends Cubit<AppState> {
 }
 
 
-// SwitchListTile(
-//             title: Text(themeMode.isDark ? "Dark Mode" : "Light Mode"),
-//             value: themeMode.isDark,
-//             onChanged: (value) {
-//               themeMode.setTheme(isValue: value);
-//             },
-//           ),
