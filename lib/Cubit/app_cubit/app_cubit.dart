@@ -18,7 +18,15 @@ class AppCubit extends Cubit<AppState> {
   List<NavigationDestination> navigationDestinations = [
     NavigationDestination(icon: Icon(IconlyLight.home), label: "Home"),
     NavigationDestination(icon: Icon(IconlyLight.search), label: "Search"),
-    NavigationDestination(icon: Icon(IconlyLight.bag2), label: "Cart"),
+    NavigationDestination(
+      icon: Badge(
+        
+        backgroundColor: Colors.blueAccent,
+        label: Text("6", style: TextStyle(color: Colors.white)),
+        child: Icon(IconlyLight.bag2),
+      ),
+      label: "Cart",
+    ),
     NavigationDestination(icon: Icon(IconlyLight.profile), label: "Profile"),
   ];
   chanagePageView({required int index}) {
