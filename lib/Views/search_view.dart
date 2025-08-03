@@ -1,3 +1,4 @@
+import 'package:e_commerce/Widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class SearchView extends StatelessWidget {
@@ -5,10 +6,26 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Search View",
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Column(
+        children: [
+          SizedBox(height: 10),
+          CustomTextFormField(
+            prefixIcon: Icons.search,
+            suffixIcon: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.clear, color: Colors.red),
+            ),
+            hintText: "Search for products",
+            onChanged: (value) {
+              
+            },
+            onSaved: (value) {
+              
+            },
+          ),
+        ],
       ),
     );
   }

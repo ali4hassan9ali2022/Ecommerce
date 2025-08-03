@@ -26,8 +26,8 @@ class EcommerceAp extends StatelessWidget {
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: lightMode(),
-            darkTheme: darkTheme(),
+            theme: lightMode(context),
+            darkTheme: darkTheme(context),
             themeMode: BlocProvider.of<ThemeCubit>(context).isDark
                 ? ThemeMode.dark
                 : ThemeMode.light,

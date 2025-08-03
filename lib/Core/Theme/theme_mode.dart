@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-ThemeData lightMode() {
+ThemeData lightMode(BuildContext context) {
   return ThemeData(
     scaffoldBackgroundColor: AppColors.lightScaffoldColor,
     cardColor: AppColors.lightCardColor,
     appBarTheme: const AppBarTheme(
-      
       titleTextStyle: TextStyle(
         color: Colors.black,
         fontSize: 20,
@@ -38,10 +37,29 @@ ThemeData lightMode() {
     //   backgroundColor: Colors.white,
     // ),
     brightness: Brightness.light,
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+
+      prefixIconColor: Colors.blueAccent,
+      fillColor: Colors.grey[200],
+      contentPadding: EdgeInsets.all(10),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.transparent),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.white),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+      ),
+    ),
   );
 }
 
-ThemeData darkTheme() {
+ThemeData darkTheme(BuildContext context) {
   return ThemeData(
     // primarySwatch: Colors.deepOrange,
     scaffoldBackgroundColor: AppColors.darkScaffoldColor,
@@ -74,5 +92,21 @@ ThemeData darkTheme() {
       ),
     ),
     brightness: Brightness.dark,
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      contentPadding: EdgeInsets.all(10),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.transparent),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.black),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
+      ),
+    ),
   );
 }
