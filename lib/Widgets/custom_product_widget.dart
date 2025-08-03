@@ -37,6 +37,7 @@ class CustomProductWidget extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: 6),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -64,6 +65,7 @@ class CustomProductWidget extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: 10),
       ],
     );
   }

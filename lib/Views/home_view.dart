@@ -1,3 +1,4 @@
+import 'package:e_commerce/Widgets/custom_swiper_to_home_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -5,11 +6,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Home View",
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-      ),
-    );
+    var size = MediaQuery.of(context).size;
+    return Column(children: [CustomSwiperToHomeView(size: size)]);
   }
 }
