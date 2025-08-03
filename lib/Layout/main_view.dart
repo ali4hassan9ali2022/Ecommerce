@@ -1,4 +1,5 @@
 import 'package:e_commerce/Core/Utils/assets.dart';
+import 'package:e_commerce/Cubit/Search_cubit/search_cubit.dart';
 import 'package:e_commerce/Cubit/app_cubit/app_cubit.dart';
 import 'package:e_commerce/Cubit/app_cubit/app_state.dart';
 import 'package:e_commerce/Widgets/app_shimmer%20.dart';
@@ -12,12 +13,13 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AppCubit>(create: (context) => AppCubit()),
+        BlocProvider<SearchCubit>(create: (context) => SearchCubit()),
+      ],
       child: BlocConsumer<AppCubit, AppState>(
-        listener: (context, state) {
-        
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           var appCubit = BlocProvider.of<AppCubit>(context);
           return Scaffold(

@@ -1,5 +1,5 @@
-import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Widgets/quantity_bottom_sheet.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
@@ -15,10 +15,10 @@ class CustomCart extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                Assets.imagesMobiles,
-                width: size.height * 0.2,
-                height: size.height * 0.2,
+              child: FancyShimmerImage(
+                imageUrl: "https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png",
+                width: size.height * 0.3,
+                height: size.height * 0.3,
               ),
             ),
             SizedBox(width: 10),
