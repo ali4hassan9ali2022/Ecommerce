@@ -1,6 +1,7 @@
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_cubit.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_state.dart';
+import 'package:e_commerce/Views/Wishliat_view.dart';
 import 'package:e_commerce/Widgets/custom_list_title_for_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -76,10 +77,18 @@ class ProfileView extends StatelessWidget {
                   icon: IconlyBold.edit,
                   image: Assets.imagesOrderSvg,
                 ),
-                CustomListTitleForProfileView(
-                  title: "WishList",
-                  icon: IconlyBold.edit,
-                  image: Assets.imagesWishlistSvg,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => WishliatView()),
+                    );
+                  },
+                  child: CustomListTitleForProfileView(
+                    title: "WishList",
+                    icon: IconlyBold.edit,
+                    image: Assets.imagesWishlistSvg,
+                  ),
                 ),
                 CustomListTitleForProfileView(
                   title: "Viewed recently",
