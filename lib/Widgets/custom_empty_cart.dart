@@ -1,11 +1,10 @@
-import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class CustomEmptyCart extends StatelessWidget {
-  const CustomEmptyCart({super.key});
+  const CustomEmptyCart({super.key, required this.image});
 
- 
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class CustomEmptyCart extends StatelessWidget {
           children: [
             SizedBox(height: 30),
             Image.asset(
-              Assets.imagesShoppingCart,
+              image,
               height: size.height * 0.35,
               width: double.infinity,
             ),
