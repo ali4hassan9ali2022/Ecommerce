@@ -1,5 +1,6 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:e_commerce/Core/Helper/app_helper.dart';
+import 'package:e_commerce/Views/products_details_view.dart';
 import 'package:e_commerce/Widgets/category_rounded.dart';
 import 'package:e_commerce/Widgets/custom_swiper_to_home_view.dart';
 import 'package:e_commerce/Widgets/latest_arrivals.dart';
@@ -32,7 +33,17 @@ class HomeView extends StatelessWidget {
               itemCount: 10,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return LatestArrivals();
+                return InkWell(
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductsDetailsView(),
+                      ),
+                    );
+                  },
+                  child: LatestArrivals(),
+                );
               },
             ),
           ),

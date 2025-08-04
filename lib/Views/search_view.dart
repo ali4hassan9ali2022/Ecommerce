@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:e_commerce/Cubit/Search_cubit/search_cubit.dart';
 import 'package:e_commerce/Cubit/Search_cubit/search_state.dart';
+import 'package:e_commerce/Views/products_details_view.dart';
 import 'package:e_commerce/Widgets/custom_product_widget.dart';
 import 'package:e_commerce/Widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +47,17 @@ class SearchView extends StatelessWidget {
                 child: DynamicHeightGridView(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
-                  builder: (context, index) => CustomProductWidget(),
+                  builder: (context, index) => InkWell(
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProductsDetailsView(),
+                        ),
+                      );
+                    },
+                    child: CustomProductWidget(),
+                  ),
                   itemCount: 100,
                   crossAxisCount: 2,
                 ),
