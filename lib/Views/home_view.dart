@@ -1,4 +1,5 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
+import 'package:e_commerce/Core/Helper/app_helper.dart';
 import 'package:e_commerce/Widgets/category_rounded.dart';
 import 'package:e_commerce/Widgets/custom_swiper_to_home_view.dart';
 import 'package:e_commerce/Widgets/latest_arrivals.dart';
@@ -45,8 +46,9 @@ class HomeView extends StatelessWidget {
           ),
           SizedBox(height: 30),
           DynamicHeightGridView(
-            builder: (context, index) => CategoryRounded(),
-            itemCount: 10,
+            builder: (context, index) =>
+                CategoryRounded(categoryModel: AppHelper.categories[index]),
+            itemCount: AppHelper.categories.length,
             crossAxisCount: 4,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),

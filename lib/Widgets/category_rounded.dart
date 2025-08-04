@@ -1,17 +1,17 @@
-import 'package:e_commerce/Core/Utils/assets.dart';
+import 'package:e_commerce/Models/category_model.dart';
 import 'package:flutter/material.dart';
 
 class CategoryRounded extends StatelessWidget {
-  const CategoryRounded({super.key});
-
+  const CategoryRounded({super.key, required this.categoryModel});
+  final CategoryModel categoryModel;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.asset(Assets.imagesShoes, width: 50, height: 50),
+        Image.asset(categoryModel.image, width: 50, height: 50),
         SizedBox(height: 15),
         Text(
-          "Shose",
+          categoryModel.title,
           style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ],
