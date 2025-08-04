@@ -1,3 +1,4 @@
+import 'package:e_commerce/Widgets/wishlist_view_body.dart';
 import 'package:flutter/material.dart';
 
 class WishliatView extends StatelessWidget {
@@ -17,6 +18,7 @@ class WishliatView extends StatelessWidget {
           ),
         ],
       ),
+      body: WishlistViewBody(),
     );
   }
 }
