@@ -1,13 +1,13 @@
+import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_cubit.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_state.dart';
-import 'package:e_commerce/Views/Wishliat_view.dart';
-import 'package:e_commerce/Views/viewed_recently_view.dart';
 import 'package:e_commerce/Widgets/custom_alert_dialog.dart';
 import 'package:e_commerce/Widgets/custom_list_title_for_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -80,11 +80,12 @@ class ProfileView extends StatelessWidget {
                   image: Assets.imagesOrderSvg,
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => WishliatView()),
-                    );
+                  onTap: () async{
+                   await GoRouter.of(context).push(AppRouter.kWishliatView);
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => WishliatView()),
+                    // );
                   },
                   child: CustomListTitleForProfileView(
                     title: "WishList",
@@ -93,13 +94,14 @@ class ProfileView extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ViewedRecentlyView(),
-                      ),
-                    );
+                  onTap: () async{
+                   await GoRouter.of(context).push(AppRouter.kViewdRecentlyView);
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ViewedRecentlyView(),
+                    //   ),
+                    // );
                   },
                   child: CustomListTitleForProfileView(
                     title: "Viewed recently",

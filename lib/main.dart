@@ -1,8 +1,8 @@
 import 'package:e_commerce/Core/Helper/cache_helper.dart';
 import 'package:e_commerce/Core/Theme/theme_mode.dart';
+import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_cubit.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_state.dart';
-import 'package:e_commerce/Layout/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,11 +20,9 @@ class EcommerceAp extends StatelessWidget {
     return BlocProvider(
       create: (context) => ThemeCubit(),
       child: BlocConsumer<ThemeCubit, ThemeState>(
-        listener: (context, state) {
-          
-        },
+        listener: (context, state) {},
         builder: (context, state) {
-          return MaterialApp(
+          return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             theme: lightMode(context),
             darkTheme: darkTheme(context),
@@ -32,7 +30,7 @@ class EcommerceAp extends StatelessWidget {
                 ? ThemeMode.dark
                 : ThemeMode.light,
             title: "E-commerce App",
-            home: MainView(),
+            routerConfig: AppRouter.router,
           );
         },
       ),

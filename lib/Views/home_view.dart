@@ -1,10 +1,11 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:e_commerce/Core/Helper/app_helper.dart';
-import 'package:e_commerce/Views/products_details_view.dart';
+import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Widgets/category_rounded.dart';
 import 'package:e_commerce/Widgets/custom_swiper_to_home_view.dart';
 import 'package:e_commerce/Widgets/latest_arrivals.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -35,12 +36,13 @@ class HomeView extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductsDetailsView(),
-                      ),
-                    );
+                    await GoRouter.of(context).push(AppRouter.kProductsDetails);
+                    // await Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => ProductsDetailsView(),
+                    //   ),
+                    // );
                   },
                   child: LatestArrivals(),
                 );

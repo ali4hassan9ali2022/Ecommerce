@@ -1,13 +1,14 @@
 import 'dart:developer';
 
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
+import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Cubit/Search_cubit/search_cubit.dart';
 import 'package:e_commerce/Cubit/Search_cubit/search_state.dart';
-import 'package:e_commerce/Views/products_details_view.dart';
 import 'package:e_commerce/Widgets/custom_product_widget.dart';
 import 'package:e_commerce/Widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});
@@ -49,12 +50,15 @@ class SearchView extends StatelessWidget {
                   physics: NeverScrollableScrollPhysics(),
                   builder: (context, index) => InkWell(
                     onTap: () async {
-                      await Navigator.push(
+                      await GoRouter.of(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => ProductsDetailsView(),
-                        ),
-                      );
+                      ).push(AppRouter.kProductsDetails);
+                      // await Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => ProductsDetailsView(),
+                      //   ),
+                      // );
                     },
                     child: CustomProductWidget(),
                   ),
