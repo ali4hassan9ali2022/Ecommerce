@@ -3,6 +3,7 @@ import 'package:e_commerce/Core/theme_cubit/theme_cubit.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_state.dart';
 import 'package:e_commerce/Views/Wishliat_view.dart';
 import 'package:e_commerce/Views/viewed_recently_view.dart';
+import 'package:e_commerce/Widgets/custom_alert_dialog.dart';
 import 'package:e_commerce/Widgets/custom_list_title_for_profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -161,7 +162,15 @@ class ProfileView extends StatelessWidget {
                   borderRadius: BorderRadiusGeometry.circular(30),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+
+                  builder: (context) {
+                    return CustomAlertDialog();
+                  },
+                );
+              },
               label: Text("Logout"),
               icon: Icon(Icons.logout),
             ),
