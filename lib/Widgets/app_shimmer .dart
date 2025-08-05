@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerText extends StatelessWidget {
-  const ShimmerText({super.key, required this.text});
+  const ShimmerText({super.key, required this.text, this.fontSize});
 final String text;
+final double? fontSize;
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
@@ -12,7 +13,7 @@ final String text;
       highlightColor: Colors.red,
       child: Text(
         text,
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: fontSize ?? 20, fontWeight: FontWeight.bold),
       ),
     );
   }

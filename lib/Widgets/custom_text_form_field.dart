@@ -28,7 +28,7 @@ class CustomTextFormField extends StatelessWidget {
   final Widget? label;
   final bool? filled;
   final Color? fillColor;
-  final IconData? prefixIcon;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final Function()? onTap;
   final String? Function(String?)? validator;
@@ -69,7 +69,7 @@ class CustomTextFormField extends StatelessWidget {
         focusedBorder: focusedBorder,
         filled: filled,
         fillColor: fillColor,
-        prefixIcon: Icon(prefixIcon),
+        prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
       ),
     );

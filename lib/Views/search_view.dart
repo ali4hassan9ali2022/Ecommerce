@@ -27,7 +27,7 @@ class SearchView extends StatelessWidget {
               SliverToBoxAdapter(
                 child: CustomTextFormField(
                   controller: searchCubit.searchController,
-                  prefixIcon: Icons.search,
+                  prefixIcon: Icon(Icons.search),
                   suffixIcon: IconButton(
                     onPressed: () {
                       searchCubit.searchController.clear();
