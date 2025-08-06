@@ -1,5 +1,7 @@
 import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Core/Utils/assets.dart';
+import 'package:e_commerce/Core/Utils/constants.dart';
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_cubit.dart';
 import 'package:e_commerce/Core/theme_cubit/theme_state.dart';
 import 'package:e_commerce/Widgets/custom_alert_dialog.dart';
@@ -22,7 +24,7 @@ class ProfileView extends StatelessWidget {
             visible: false,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text("Please login to have ultimate access"),
+              child: Text(Strings.pleaseLoginToHaveUltimateAccess),
             ),
           ),
           const SizedBox(height: 20),
@@ -37,10 +39,8 @@ class ProfileView extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Theme.of(context).cardColor,
                     border: Border.all(width: 2, color: Colors.lightBlue),
-                    image: const DecorationImage(
-                      image: NetworkImage(
-                        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-                      ),
+                    image: DecorationImage(
+                      image: NetworkImage(Constants.imageTest),
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -50,14 +50,14 @@ class ProfileView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Ali Kasrawy",
+                      Constants.nameTest,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     Text(
-                      "aliKasrawy7@gmail.com",
+                      Constants.emailTest,
                       style: TextStyle(fontSize: 18, color: Colors.grey),
                     ),
                   ],
@@ -71,31 +71,33 @@ class ProfileView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "General",
+                  Strings.general,
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 CustomListTitleForProfileView(
-                  title: "All Orders",
+                  title: Strings.allOrders,
                   icon: IconlyBold.edit,
                   image: Assets.imagesOrderSvg,
                 ),
                 InkWell(
-                  onTap: () async{
-                   await GoRouter.of(context).push(AppRouter.kWishliatView);
+                  onTap: () async {
+                    await GoRouter.of(context).push(AppRouter.kWishliatView);
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(builder: (context) => WishliatView()),
                     // );
                   },
                   child: CustomListTitleForProfileView(
-                    title: "WishList",
+                    title: Strings.wishList,
                     icon: IconlyBold.edit,
                     image: Assets.imagesWishlistSvg,
                   ),
                 ),
                 InkWell(
-                  onTap: () async{
-                   await GoRouter.of(context).push(AppRouter.kViewdRecentlyView);
+                  onTap: () async {
+                    await GoRouter.of(
+                      context,
+                    ).push(AppRouter.kViewdRecentlyView);
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(
@@ -104,20 +106,20 @@ class ProfileView extends StatelessWidget {
                     // );
                   },
                   child: CustomListTitleForProfileView(
-                    title: "Viewed recently",
+                    title: Strings.viewedRecently,
                     icon: IconlyBold.edit,
                     image: Assets.imagesRecent,
                   ),
                 ),
                 CustomListTitleForProfileView(
-                  title: "Address",
+                  title: Strings.address,
                   icon: IconlyBold.edit,
                   image: Assets.imagesAddress,
                 ),
                 Divider(thickness: 1),
                 SizedBox(height: 7),
                 Text(
-                  "Settings",
+                  Strings.settings,
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 BlocBuilder<ThemeCubit, ThemeState>(
@@ -126,8 +128,8 @@ class ProfileView extends StatelessWidget {
                       secondary: Image.asset(Assets.imagesTheme, height: 30),
                       title: Text(
                         BlocProvider.of<ThemeCubit>(context).isDark
-                            ? "Dark Mode"
-                            : "Light Mode",
+                            ? Strings.darkMode
+                            : Strings.lightMode,
                       ),
                       value: BlocProvider.of<ThemeCubit>(context).isDark,
                       onChanged: (value) {
@@ -141,12 +143,11 @@ class ProfileView extends StatelessWidget {
                 Divider(thickness: 1),
                 SizedBox(height: 7),
                 Text(
-                  "Others",
+                  Strings.others,
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 CustomListTitleForProfileView(
-                  title: "Privacy & Policy",
-
+                  title: Strings.privacyPolicy,
                   image: Assets.imagesPrivacy,
                 ),
 
@@ -173,7 +174,7 @@ class ProfileView extends StatelessWidget {
                   },
                 );
               },
-              label: Text("Logout"),
+              label: Text(Strings.signOut),
               icon: Icon(Icons.logout),
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Widgets/app_shimmer%20.dart';
 import 'package:e_commerce/Widgets/custom_button.dart';
 import 'package:e_commerce/Widgets/custom_text_form_field.dart';
@@ -18,20 +19,20 @@ class LogInViewBody extends StatelessWidget {
             SizedBox(height: 100),
             Align(
               alignment: Alignment.center,
-              child: ShimmerText(text: "ShopSmart", fontSize: 28),
+              child: ShimmerText(text: Strings.shopSmart, fontSize: 28),
             ),
             SizedBox(height: 20),
             Text(
-              "Welcome Back!",
+              Strings.welcomeBack,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(
-              "Let't get you Logged in so ypu can start shopping",
+              Strings.let,
               style: TextStyle(fontSize: 14, color: Colors.grey),
             ),
             SizedBox(height: 30),
             CustomTextFormField(
-              hintText: "youremail@gmail.com",
+              hintText: Strings.hintEmail,
               prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
             ),
             SizedBox(height: 10),
@@ -47,8 +48,7 @@ class LogInViewBody extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: Text(
-                "forgot password? ",
-
+                Strings.forgotPassword,
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.blueAccent,
@@ -66,7 +66,7 @@ class LogInViewBody extends StatelessWidget {
               width: double.infinity,
               child: Center(
                 child: Text(
-                  "Sign In",
+                  Strings.signIn,
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.deepPurple,
@@ -79,7 +79,7 @@ class LogInViewBody extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Text(
-                "OR CONNECT USIGN",
+                Strings.orConnect,
                 style: TextStyle(fontSize: 20, color: Colors.grey[300]),
               ),
             ),
@@ -91,7 +91,7 @@ class LogInViewBody extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () {},
                     label: Text(
-                      "Sign in with Google",
+                      Strings.signInWithGoogle,
                       style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                     icon: Icon(FontAwesomeIcons.google, color: Colors.red),
@@ -104,7 +104,7 @@ class LogInViewBody extends StatelessWidget {
                     onPressed: () {},
                     child: Center(
                       child: Text(
-                        "Guest?",
+                        Strings.guset,
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.deepPurpleAccent,
@@ -119,9 +119,9 @@ class LogInViewBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account? ", style: TextStyle(fontSize: 18)),
+                Text(Strings.dontHaveAnAccount, style: TextStyle(fontSize: 18)),
                 Text(
-                  "Sign up",
+                  Strings.signUp,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,

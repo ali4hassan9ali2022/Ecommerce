@@ -1,3 +1,4 @@
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:flutter/material.dart';
 
 class CustomCartCheckout extends StatelessWidget {
@@ -23,7 +24,7 @@ class CustomCartCheckout extends StatelessWidget {
                   FittedBox(
                     fit: BoxFit.scaleDown,
                     child: Text(
-                      "Total (6 products / 10 items)",
+                      "${Strings.total} (6 products / 10 items)",
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(fontSize: 20),
                     ),
@@ -39,7 +40,7 @@ class CustomCartCheckout extends StatelessWidget {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
               onPressed: () {},
-              child: Text("Checkout", style: TextStyle(color: Colors.white)),
+              child: Text(Strings.checkout, style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

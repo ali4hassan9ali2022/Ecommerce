@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:e_commerce/Core/Utils/app_router.dart';
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Cubit/Search_cubit/search_cubit.dart';
 import 'package:e_commerce/Cubit/Search_cubit/search_state.dart';
 import 'package:e_commerce/Widgets/custom_product_widget.dart';
@@ -34,7 +35,7 @@ class SearchView extends StatelessWidget {
                     },
                     icon: Icon(Icons.clear, color: Colors.red),
                   ),
-                  hintText: "Search for products",
+                  hintText: Strings.search,
                   onChanged: (value) {
                     log(value.toString());
                   },

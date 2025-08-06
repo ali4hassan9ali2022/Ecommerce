@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:flutter/material.dart';
 
 class QuantityBottomSheet extends StatelessWidget {
@@ -33,7 +34,7 @@ class QuantityBottomSheet extends StatelessWidget {
                   padding: const EdgeInsets.all(4.0),
                   child: Center(
                     child: Text(
-                      "Quantity: ${index + 1}",
+                      "${Strings.quantity}: ${index + 1}",
                       style: TextStyle(fontSize: 18),
                     ),
                   ),

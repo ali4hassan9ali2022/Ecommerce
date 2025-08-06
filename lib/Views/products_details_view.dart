@@ -1,3 +1,4 @@
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Widgets/app_shimmer%20.dart';
 import 'package:e_commerce/Widgets/products_details_view_body.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ class ProductsDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: ShimmerText(text: "ShopSmart"),),
+      appBar: AppBar(centerTitle: true, title: ShimmerText(text: Strings.shopSmart),),
 
       body: ProductsDetailsViewBody(),
     );

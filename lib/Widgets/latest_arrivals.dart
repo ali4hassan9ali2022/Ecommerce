@@ -1,3 +1,4 @@
+import 'package:e_commerce/Core/Utils/constants.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
@@ -18,9 +19,7 @@ class LatestArrivals extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: FancyShimmerImage(
-                  imageUrl:
-                      "https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png",
-
+                  imageUrl: Constants.imageTestOne,
                   height: size.width * 0.44,
                   width: size.width * 0.44,
                 ),

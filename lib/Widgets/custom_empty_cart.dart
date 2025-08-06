@@ -1,3 +1,4 @@
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class CustomEmptyCart extends StatelessWidget {
               width: double.infinity,
             ),
             Text(
-              "Whoops!",
+              Strings.whoops,
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
@@ -30,11 +31,11 @@ class CustomEmptyCart extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              "Your cart is empty",
+              Strings.yourCartIsEmpty,
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
             ),
             Text(
-              "Looks like you haven't added anything to your cart yet.",
+              Strings.looksLike,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
             ),
             SizedBox(height: 20),
@@ -43,7 +44,7 @@ class CustomEmptyCart extends StatelessWidget {
               color: Colors.blueAccent,
               padding: EdgeInsets.all(20),
               child: Text(
-                "Shop Now",
+                Strings.shopNow,
                 style: TextStyle(fontSize: 22, color: Colors.white),
               ),
             ),

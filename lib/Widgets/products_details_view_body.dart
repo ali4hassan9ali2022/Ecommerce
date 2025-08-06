@@ -1,3 +1,5 @@
+import 'package:e_commerce/Core/Utils/constants.dart';
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +15,7 @@ class ProductsDetailsViewBody extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: FancyShimmerImage(
-              imageUrl: "https://i.ibb.co/8r1Ny2n/20-Nike-Air-Force-1-07.png",
+              imageUrl: Constants.imageTestOne,
               height: size.height * 0.38,
               width: double.infinity,
               boxFit: BoxFit.cover,
@@ -72,7 +74,7 @@ class ProductsDetailsViewBody extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {},
-                    label: Text("Add to cart"),
+                    label: Text(Strings.addToCart),
                     icon: Icon(Icons.add_shopping_cart),
                   ),
                 ),
@@ -86,11 +88,11 @@ class ProductsDetailsViewBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "About this item",
+                  Strings.aboutThisItem,
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "in phones",
+                  Strings.inPhones,
                   style: TextStyle(fontSize: 18, color: Colors.grey[400]),
                 ),
               ],
@@ -100,7 +102,7 @@ class ProductsDetailsViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Text(
-              "Description " * 50,
+              Strings.description * 50,
               style: TextStyle(fontSize: 18, color: Colors.grey),
             ),
           ),

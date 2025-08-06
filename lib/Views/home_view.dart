@@ -1,6 +1,7 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:e_commerce/Core/Helper/app_helper.dart';
 import 'package:e_commerce/Core/Utils/app_router.dart';
+import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Widgets/category_rounded.dart';
 import 'package:e_commerce/Widgets/custom_swiper_to_home_view.dart';
 import 'package:e_commerce/Widgets/latest_arrivals.dart';
@@ -22,7 +23,7 @@ class HomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Text(
-              "Latest arrivals",
+              Strings.latestArrivals,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
@@ -53,7 +54,7 @@ class HomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Text(
-              "Categories",
+              Strings.categories,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
