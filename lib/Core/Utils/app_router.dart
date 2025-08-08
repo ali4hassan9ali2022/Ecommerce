@@ -1,5 +1,6 @@
 import 'package:e_commerce/Layout/main_view.dart';
 import 'package:e_commerce/Views/Auth/log_in_view.dart';
+import 'package:e_commerce/Views/Auth/sign_up_view.dart';
 import 'package:e_commerce/Views/Wishliat_view.dart';
 import 'package:e_commerce/Views/products_details_view.dart';
 import 'package:e_commerce/Views/viewed_recently_view.dart';
@@ -15,6 +16,7 @@ abstract class AppRouter {
   static GoRouter router = GoRouter(
     routes: [
       GoRoute(path: "/", builder: (context, state) => LogInView()),
+      GoRoute(path: kSignUpView, builder: (context, state) => SignUpView(),),
       GoRoute(path: kMainView, builder: (context, state) => MainView()),
       GoRoute(
         path: kProductsDetails,

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Cubit/log_in_cubit/log_in_cubit.dart';
 import 'package:e_commerce/Cubit/log_in_cubit/log_in_state.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class LogInViewBody extends StatelessWidget {
   const LogInViewBody({super.key});
@@ -163,12 +165,17 @@ class LogInViewBody extends StatelessWidget {
                         Strings.dontHaveAnAccount,
                         style: TextStyle(fontSize: 18),
                       ),
-                      Text(
-                        Strings.signUp,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.blueAccent,
+                      GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push(AppRouter.kSignUpView);
+                        },
+                        child: Text(
+                          Strings.signUp,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.blueAccent,
+                          ),
                         ),
                       ),
                     ],
