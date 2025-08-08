@@ -7,9 +7,11 @@ import 'package:e_commerce/Widgets/app_shimmer%20.dart';
 import 'package:e_commerce/Widgets/custom_button.dart';
 import 'package:e_commerce/Widgets/custom_text_form_field.dart';
 import 'package:e_commerce/Widgets/my_validators.dart';
+import 'package:e_commerce/Widgets/pick_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpViewBody extends StatelessWidget {
   const SignUpViewBody({super.key});
@@ -17,6 +19,7 @@ class SignUpViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var signUpCibit = BlocProvider.of<SignUpCubit>(context);
+    var size = MediaQuery.of(context).size;
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -26,7 +29,7 @@ class SignUpViewBody extends StatelessWidget {
             child: Form(
               key: signUpCibit.globalKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20),
                   Align(
@@ -34,16 +37,30 @@ class SignUpViewBody extends StatelessWidget {
                     child: ShimmerText(text: Strings.shopSmart, fontSize: 28),
                   ),
                   SizedBox(height: 20),
-                  Text(
-                    Strings.welcomeBack,
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      Strings.welcomeBack,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                   Text(
                     Strings.letSignUp,
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                   ),
-
                   SizedBox(height: 30),
+                  SizedBox(
+                    width: size.width * 0.3,
+                    height: size.width * 0.3,
+                    child: PickImageWidget(
+                      fun: () {},
+                      signUpCubit: signUpCibit,
+                    ),
+                  ),
+                  SizedBox(height: 20),
                   CustomTextFormField(
                     validator: (value) {
                       return MyValidators.displayNamevalidator(value);
@@ -145,6 +162,29 @@ class SignUpViewBody extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(height: 50),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        Strings.alreadyHaveAnAccount,
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).pop();
+                        },
+                        child: Text(
+                          Strings.signUp,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.blueAccent,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

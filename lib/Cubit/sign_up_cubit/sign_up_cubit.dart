@@ -1,6 +1,7 @@
 import 'package:e_commerce/Cubit/sign_up_cubit/sign_up_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitialState());
@@ -13,4 +14,5 @@ class SignUpCubit extends Cubit<SignUpState> {
   FocusNode passwordNode = FocusNode();
   FocusNode nameNode = FocusNode();
   FocusNode confirmPasswordNode = FocusNode();
+  XFile? imagePicker;
 }

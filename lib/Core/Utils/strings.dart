@@ -54,6 +54,7 @@ abstract class Strings {
   static const signInWithGoogle = 'Sign in with Google';
   static const guset = 'Guest?';
   static const dontHaveAnAccount = 'Don\'t have an account? ';
+  static const alreadyHaveAnAccount = 'Already have an account? ';
   static const latestArrivals = 'Latest arrivals';
   static const pleaseLoginToHaveUltimateAccess =
       'Please login to have ultimate access';
