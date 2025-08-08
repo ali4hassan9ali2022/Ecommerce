@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Cubit/log_in_cubit/log_in_cubit.dart';
 import 'package:e_commerce/Cubit/log_in_cubit/log_in_state.dart';
 import 'package:e_commerce/Widgets/app_shimmer%20.dart';
 import 'package:e_commerce/Widgets/custom_button.dart';
 import 'package:e_commerce/Widgets/custom_text_form_field.dart';
+import 'package:e_commerce/Widgets/my_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -41,22 +44,34 @@ class LogInViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 30),
                   CustomTextFormField(
+                    validator: (value) {
+                      return MyValidators.emailValidator(value);
+                    },
                     onFieldSubmitted: (value) {
                       FocusScope.of(
                         context,
                       ).requestFocus(loginCibit.passwordNode);
+                      log("Love Mariam");
                     },
                     keyboardType: TextInputType.emailAddress,
                     controller: loginCibit.emailController,
                     focusNode: loginCibit.emailNode,
                     hintText: Strings.hintEmail,
+                    maxLines: 1,
                     prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
                   ),
                   SizedBox(height: 10),
                   CustomTextFormField(
+                    validator: (value) {
+                      return MyValidators.passwordValidator(value);
+                    },
+                    onFieldSubmitted: (value) {
+                      log("Love Mariam");
+                    },
                     controller: loginCibit.passwordController,
                     focusNode: loginCibit.passwordNode,
                     hintText: "********",
+                    maxLines: 1,
                     prefixIcon: Icon(IconlyLight.password, color: Colors.grey),
                     suffixIcon: IconButton(
                       onPressed: () {},
@@ -79,6 +94,9 @@ class LogInViewBody extends StatelessWidget {
                   ),
                   SizedBox(height: 40),
                   CustomButton(
+                    onTap: () {
+                      if (loginCibit.globalKey.currentState!.validate()) {}
+                    },
                     borderRadius: 12,
                     color: Colors.grey[200],
                     height: 40,
