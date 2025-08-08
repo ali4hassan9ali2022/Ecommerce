@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
@@ -20,7 +19,11 @@ class CustomTextFormField extends StatelessWidget {
     this.errorStyle,
     this.hintStyle,
     this.onChanged,
-    this.onSaved, this.border, this.enabledBorder, this.focusedBorder,
+    this.onSaved,
+    this.border,
+    this.enabledBorder,
+    this.focusedBorder,
+    this.focusNode,
   });
   final String? hintText;
   final Function(dynamic)? onChanged;
@@ -42,9 +45,11 @@ class CustomTextFormField extends StatelessWidget {
   final InputBorder? border;
   final InputBorder? enabledBorder;
   final InputBorder? focusedBorder;
+  final FocusNode? focusNode;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
       maxLines: obscureText == true ? 1 : maxLines,
       textAlign: textAlign ?? TextAlign.start,
       onTap: onTap,
@@ -54,11 +59,10 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText ?? false,
-       onTapUpOutside: (event) {
-          FocusScope.of(context).unfocus();
-        },
+      onTapUpOutside: (event) {
+        FocusScope.of(context).unfocus();
+      },
       decoration: InputDecoration(
-      
         hintStyle: hintStyle,
         errorStyle: errorStyle,
         contentPadding: EdgeInsets.zero,
@@ -75,5 +79,3 @@ class CustomTextFormField extends StatelessWidget {
     );
   }
 }
-
-
