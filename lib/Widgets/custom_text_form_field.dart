@@ -24,10 +24,12 @@ class CustomTextFormField extends StatelessWidget {
     this.enabledBorder,
     this.focusedBorder,
     this.focusNode,
+    this.onFieldSubmitted,
   });
   final String? hintText;
   final Function(dynamic)? onChanged;
   final Function(dynamic)? onSaved;
+  final Function(dynamic)? onFieldSubmitted;
   final Widget? label;
   final bool? filled;
   final Color? fillColor;
@@ -62,6 +64,7 @@ class CustomTextFormField extends StatelessWidget {
       onTapUpOutside: (event) {
         FocusScope.of(context).unfocus();
       },
+      onFieldSubmitted: onFieldSubmitted,
       decoration: InputDecoration(
         hintStyle: hintStyle,
         errorStyle: errorStyle,
