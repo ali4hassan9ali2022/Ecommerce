@@ -3,6 +3,7 @@ abstract class Strings {
   static const welcome = 'Welcome to E-Commerce';
   static const welcomeBack = 'Welcome Back!';
   static const let = 'Let\'t get you Logged in so ypu can start shopping';
+  static const letSignUp = 'Sign up now to receive special offers and updates from our app';
   static const hintEmail = 'youremail@gmail.com';
   static const signIn = 'Sign In';
   static const signUp = 'Sign Up';
