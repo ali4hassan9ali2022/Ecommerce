@@ -2,6 +2,7 @@ import 'package:e_commerce/Layout/main_view.dart';
 import 'package:e_commerce/Views/Auth/log_in_view.dart';
 import 'package:e_commerce/Views/Auth/sign_up_view.dart';
 import 'package:e_commerce/Views/Wishliat_view.dart';
+import 'package:e_commerce/Views/forgot_password_view.dart';
 import 'package:e_commerce/Views/orders_view.dart';
 import 'package:e_commerce/Views/products_details_view.dart';
 import 'package:e_commerce/Views/viewed_recently_view.dart';
@@ -15,6 +16,7 @@ abstract class AppRouter {
   static const kViewdRecentlyView = "/kViewdRecentlyView";
   static const kWishliatView = "/kWishliatView";
   static const kOrdersView = "/kOrdersView";
+  static const kForgotViewView = "/kForgotViewView";
   static GoRouter router = GoRouter(
     routes: [
       GoRoute(path: "/", builder: (context, state) => LogInView()),
@@ -30,6 +32,10 @@ abstract class AppRouter {
       ),
       GoRoute(path: kWishliatView, builder: (context, state) => WishliatView()),
       GoRoute(path: kOrdersView, builder: (context, state) => OrdersView()),
+      GoRoute(
+        path: kForgotViewView,
+        builder: (context, state) => ForgotPasswordView(),
+      ),
     ],
   );
 }

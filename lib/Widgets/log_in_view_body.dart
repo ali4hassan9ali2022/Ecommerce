@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Cubit/log_in_cubit/log_in_cubit.dart';
@@ -53,7 +51,6 @@ class LogInViewBody extends StatelessWidget {
                       FocusScope.of(
                         context,
                       ).requestFocus(loginCibit.passwordNode);
-                      log("Love Mariam");
                     },
                     keyboardType: TextInputType.emailAddress,
                     controller: loginCibit.emailController,
@@ -67,9 +64,7 @@ class LogInViewBody extends StatelessWidget {
                     validator: (value) {
                       return MyValidators.passwordValidator(value);
                     },
-                    onFieldSubmitted: (value) {
-                      log("Love Mariam");
-                    },
+                    onFieldSubmitted: (value) {},
                     controller: loginCibit.passwordController,
                     focusNode: loginCibit.passwordNode,
                     hintText: "********",
@@ -84,16 +79,21 @@ class LogInViewBody extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 7),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      Strings.forgotPassword,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.blueAccent,
-                        decoration: TextDecoration.underline,
-                        fontStyle: FontStyle.italic,
-                        decorationColor: Colors.blue,
+                  InkWell(
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.kForgotViewView);
+                    },
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        Strings.forgotPassword,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.blueAccent,
+                          decoration: TextDecoration.underline,
+                          fontStyle: FontStyle.italic,
+                          decorationColor: Colors.blue,
+                        ),
                       ),
                     ),
                   ),
