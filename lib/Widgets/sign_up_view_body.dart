@@ -55,10 +55,7 @@ class SignUpViewBody extends StatelessWidget {
                   SizedBox(
                     width: size.width * 0.3,
                     height: size.width * 0.3,
-                    child: PickImageWidget(
-                      fun: () {},
-                      signUpCubit: signUpCibit,
-                    ),
+                    child: PickImageWidget(signUpCubit: signUpCibit),
                   ),
                   SizedBox(height: 20),
                   CustomTextFormField(
@@ -113,9 +110,12 @@ class SignUpViewBody extends StatelessWidget {
                     hintText: "********",
                     maxLines: 1,
                     prefixIcon: Icon(IconlyLight.password, color: Colors.grey),
+                    obscureText: signUpCibit.isObsecure,
                     suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.visibility_off),
+                      onPressed: () {
+                        signUpCibit.changePasswordVisibility();
+                      },
+                      icon: Icon(signUpCibit.suffix),
                     ),
                   ),
                   SizedBox(height: 10),

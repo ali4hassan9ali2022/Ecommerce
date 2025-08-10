@@ -75,9 +75,12 @@ class LogInViewBody extends StatelessWidget {
                     hintText: "********",
                     maxLines: 1,
                     prefixIcon: Icon(IconlyLight.password, color: Colors.grey),
+                    obscureText: loginCibit.isObsecure,
                     suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.visibility_off),
+                      onPressed: () {
+                        loginCibit.changePasswordVisibility();
+                      },
+                      icon: Icon(loginCibit.suffix),
                     ),
                   ),
                   SizedBox(height: 7),

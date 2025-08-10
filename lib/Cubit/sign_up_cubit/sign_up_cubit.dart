@@ -15,4 +15,19 @@ class SignUpCubit extends Cubit<SignUpState> {
   FocusNode nameNode = FocusNode();
   FocusNode confirmPasswordNode = FocusNode();
   XFile? imagePicker;
+  IconData suffix = Icons.visibility_off_outlined;
+  bool isObsecure = true;
+  void changePasswordVisibility() {
+    isObsecure = !isObsecure;
+
+    suffix = isObsecure
+        ? Icons.visibility_off_outlined
+        : Icons.visibility_outlined;
+    emit(ChangePassworsVisibailitystate());
+  }
+
+  uploadProfilePic(XFile image) {
+    imagePicker = image;
+    emit(UploadProfilePic());
+  }
 }

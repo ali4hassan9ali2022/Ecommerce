@@ -1,16 +1,13 @@
 import 'dart:io';
 
 import 'package:e_commerce/Cubit/sign_up_cubit/sign_up_cubit.dart';
+import 'package:e_commerce/Widgets/custom_image_picker_dialog.dart';
 import 'package:flutter/material.dart';
 
 class PickImageWidget extends StatelessWidget {
-  const PickImageWidget({
-    super.key,
-    required this.signUpCubit,
-    required this.fun,
-  });
+  const PickImageWidget({super.key, required this.signUpCubit});
   final SignUpCubit signUpCubit;
-  final Function fun;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -39,7 +36,14 @@ class PickImageWidget extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.red,
               borderRadius: BorderRadius.circular(16.0),
-              onTap: () {},
+              onTap: () async {
+                await showDialog(
+                  context: context,
+                  builder: (context) {
+                    return CustomImagePickerDialog(signUpCubit: signUpCubit);
+                  },
+                );
+              },
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(

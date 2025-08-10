@@ -168,7 +168,6 @@ class ProfileView extends StatelessWidget {
               onPressed: () async {
                 await showDialog(
                   context: context,
-
                   builder: (context) {
                     return CustomAlertDialog();
                   },

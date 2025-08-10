@@ -9,4 +9,13 @@ class LogInCubit extends Cubit<LogInState> {
   GlobalKey<FormState> globalKey = GlobalKey();
   FocusNode emailNode = FocusNode();
   FocusNode passwordNode = FocusNode();
+  IconData suffix = Icons.visibility_off_outlined;
+  bool isObsecure = true;
+  void changePasswordVisibility() {
+    isObsecure = !isObsecure;
+
+    suffix =
+        isObsecure ? Icons.visibility_off_outlined : Icons.visibility_outlined;
+    emit(ChangePassworsVisibailitystate());
+  }
 } 
