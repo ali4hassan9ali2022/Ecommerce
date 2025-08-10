@@ -176,7 +176,7 @@ class SignUpViewBody extends StatelessWidget {
                           GoRouter.of(context).pop();
                         },
                         child: Text(
-                          Strings.signUp,
+                          Strings.signIn,
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w700,

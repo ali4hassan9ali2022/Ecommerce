@@ -100,7 +100,8 @@ class LogInViewBody extends StatelessWidget {
                   SizedBox(height: 40),
                   CustomButton(
                     onTap: () {
-                      if (loginCibit.globalKey.currentState!.validate()) {}
+                      // if (loginCibit.globalKey.currentState!.validate()) {}
+                      GoRouter.of(context).pushReplacement(AppRouter.kMainView);
                     },
                     borderRadius: 12,
                     color: Colors.grey[200],
