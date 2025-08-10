@@ -74,10 +74,15 @@ class ProfileView extends StatelessWidget {
                   Strings.general,
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
-                CustomListTitleForProfileView(
-                  title: Strings.allOrders,
-                  icon: IconlyBold.edit,
-                  image: Assets.imagesOrderSvg,
+                InkWell(
+                  onTap: () async {
+                    await GoRouter.of(context).push(AppRouter.kOrdersView);
+                  },
+                  child: CustomListTitleForProfileView(
+                    title: Strings.allOrders,
+                    icon: IconlyBold.edit,
+                    image: Assets.imagesOrderSvg,
+                  ),
                 ),
                 InkWell(
                   onTap: () async {
