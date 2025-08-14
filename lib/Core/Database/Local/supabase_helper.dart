@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class SupabaseHelper {
-  static const _url = "https://cwtksxxcxqcjbdpyhcdk.supabase.co";
+  static const _url = "https://pjjmoxcbzwigcrmiengg.supabase.co";
   static const _anonKey =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN3dGtzeHhjeHFjamJkcHloY2RrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzMTY1MTQsImV4cCI6MjA2Mzg5MjUxNH0.3ckx7BPy3GYqRErJekYsaHd8rK4vhPX_5BN4_WHJNNM";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqam1veGNiendpZ2NybWllbmdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUxOTcwMDEsImV4cCI6MjA3MDc3MzAwMX0.omVANrKNN55NbT7u2vLbRwQj03qpumweBy8mFr3rvVI";
   static Future<void> initSupabase() async {
     await Supabase.initialize(url: _url, anonKey: _anonKey);
   }
@@ -35,8 +35,6 @@ abstract class SupabaseHelper {
     return response;
   }
 
- 
-
   /// Add or Create Data
   static Future<bool> addData({
     required String tableName,
@@ -54,7 +52,7 @@ abstract class SupabaseHelper {
   /// Get or Fetch Data
   static Future<Map<String, dynamic>?> getData({
     required String tableName,
-     required String filterColumn,
+    required String filterColumn,
     required dynamic filterValue,
     String orderBy = "created_at",
     bool ascending = false,
@@ -62,8 +60,10 @@ abstract class SupabaseHelper {
     try {
       final response = await supabase
           .from(tableName)
-          .select().eq(filterColumn, filterValue)
-          .order(orderBy, ascending: ascending).maybeSingle();
+          .select()
+          .eq(filterColumn, filterValue)
+          .order(orderBy, ascending: ascending)
+          .maybeSingle();
       return response;
     } catch (e) {
       print("Get Error: $e");
@@ -79,12 +79,11 @@ abstract class SupabaseHelper {
     required dynamic filterValue,
   }) async {
     try {
-      final response =
-          await supabase
-              .from(tableName)
-              .update(values)
-              .eq(filterColumn, filterValue)
-              .select();
+      final response = await supabase
+          .from(tableName)
+          .update(values)
+          .eq(filterColumn, filterValue)
+          .select();
       return response.isNotEmpty;
     } catch (e) {
       print("Update Error: $e");
@@ -99,12 +98,11 @@ abstract class SupabaseHelper {
     required dynamic filterValue,
   }) async {
     try {
-      final response =
-          await supabase
-              .from(tableName)
-              .delete()
-              .eq(filterColumn, filterValue)
-              .select();
+      final response = await supabase
+          .from(tableName)
+          .delete()
+          .eq(filterColumn, filterValue)
+          .select();
       return response.isNotEmpty;
     } catch (e) {
       print("Delete Error: $e");

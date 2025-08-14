@@ -66,7 +66,6 @@ class SignUpViewBody extends StatelessWidget {
                       FocusScope.of(
                         context,
                       ).requestFocus(signUpCibit.emailNode);
-                      log("Love Mariam");
                     },
                     keyboardType: TextInputType.text,
                     controller: signUpCibit.nameController,
@@ -84,7 +83,6 @@ class SignUpViewBody extends StatelessWidget {
                       FocusScope.of(
                         context,
                       ).requestFocus(signUpCibit.passwordNode);
-                      log("Love Mariam");
                     },
                     controller: signUpCibit.emailController,
                     keyboardType: TextInputType.emailAddress,
@@ -102,7 +100,6 @@ class SignUpViewBody extends StatelessWidget {
                       FocusScope.of(
                         context,
                       ).requestFocus(signUpCibit.confirmPasswordNode);
-                      log("Love Mariam");
                     },
                     controller: signUpCibit.passwordController,
                     keyboardType: TextInputType.text,

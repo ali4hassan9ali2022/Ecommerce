@@ -34,4 +34,5 @@ class SignUpCubit extends Cubit<SignUpState> {
     imagePicker = null;
     emit(RemoveProfilePic());
   }
+  
 }
