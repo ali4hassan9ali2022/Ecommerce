@@ -6,6 +6,7 @@ import 'package:e_commerce/Widgets/app_shimmer%20.dart';
 import 'package:e_commerce/Widgets/custom_button.dart';
 import 'package:e_commerce/Widgets/custom_text_form_field.dart';
 import 'package:e_commerce/Widgets/my_validators.dart';
+import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -19,7 +20,15 @@ class LogInViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     var loginCibit = BlocProvider.of<LogInCubit>(context);
     return BlocConsumer<LogInCubit, LogInState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is SuccessSignInState) {
+          GoRouter.of(context).pushReplacement(AppRouter.kMainView);
+          CustomToastWidget.showSuccessToast("Logged in successfully");
+        }
+        if (state is FailureSignInState) {
+          CustomToastWidget.showErrorToast("Something went wrong");
+        }
+      },
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -100,22 +109,30 @@ class LogInViewBody extends StatelessWidget {
                   SizedBox(height: 40),
                   CustomButton(
                     onTap: () {
-                      // if (loginCibit.globalKey.currentState!.validate()) {}
-                      GoRouter.of(context).pushReplacement(AppRouter.kMainView);
+                      if (loginCibit.globalKey.currentState!.validate()) {
+                        loginCibit.globalKey.currentState!.save();
+                        loginCibit.signIn();
+                      }
                     },
                     borderRadius: 12,
                     color: Colors.grey[200],
                     height: 40,
                     width: double.infinity,
                     child: Center(
-                      child: Text(
-                        Strings.signIn,
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.deepPurple,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: state is LoadingSignInState
+                          ? SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(),
+                            )
+                          : Text(
+                              Strings.signIn,
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.deepPurple,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                     ),
                   ),
                   SizedBox(height: 25),

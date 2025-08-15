@@ -3,13 +3,13 @@ import 'dart:developer';
 import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Models/category_model.dart';
-import 'package:e_commerce/Models/sign_up_model.dart';
+import 'package:e_commerce/Models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class AppHelper {
-  static SignUpModel? signUpModel;
+  static UserModel? userModel;
   static const String kDark = "isDark";
   static bool isDark = false;
   static List<String> images = [Assets.imagesBanner1, Assets.imagesBanner2];
@@ -66,8 +66,9 @@ abstract class AppHelper {
     }
     return imageUrl;
   }
+
   static void signOut(BuildContext context) async {
-  await SupabaseHelper.supabase.auth.signOut();
-  // GoRouter.of(context).pushReplacement(AppRouter.kSignInView);
-}
+    await SupabaseHelper.supabase.auth.signOut();
+    // GoRouter.of(context).pushReplacement(AppRouter.kSignInView);
+  }
 }

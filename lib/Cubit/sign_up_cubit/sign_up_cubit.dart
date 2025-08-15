@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
 import 'package:e_commerce/Core/Helper/app_helper.dart';
 import 'package:e_commerce/Cubit/sign_up_cubit/sign_up_state.dart';
-import 'package:e_commerce/Models/sign_up_model.dart';
+import 'package:e_commerce/Models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -44,7 +44,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   late SupabaseClient supabase = Supabase.instance.client;
-  late SignUpModel signUpModel;
+  late UserModel signUpModel;
   Future<void> signUp() async {
     emit(LoadingSignUpState());
     try {
@@ -60,7 +60,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         imageLinkOne: "SignUp",
         imageLinkTwo: "SignUp",
       );
-      signUpModel = SignUpModel(
+      signUpModel = UserModel(
         id: user.user!.id,
         name: nameController.text,
         email: emailController.text,
@@ -68,7 +68,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         password: passwordController.text,
         confirePassword: confirmPasswordController.text,
       );
-      AppHelper.signUpModel = signUpModel;
+      AppHelper.userModel = signUpModel;
       bool isAdd = await SupabaseHelper.addData(
         tableName: "users",
         values: signUpModel.toJson(),

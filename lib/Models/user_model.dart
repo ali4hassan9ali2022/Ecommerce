@@ -1,4 +1,4 @@
-class SignUpModel {
+class UserModel {
   final String id;
   final String name;
   final String image;
@@ -6,7 +6,7 @@ class SignUpModel {
   final String password;
   final String confirePassword;
 
-  SignUpModel({
+  UserModel({
     required this.id,
     required this.name,
     required this.image,
@@ -14,8 +14,8 @@ class SignUpModel {
     required this.password,
     required this.confirePassword,
   });
-  factory SignUpModel.fromJson(Map<String, dynamic> json) {
-    return SignUpModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       id: json["id"],
       name: json["name"],
       image: json["image"],
