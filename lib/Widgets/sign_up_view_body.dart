@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Cubit/sign_up_cubit/sign_up_cubit.dart';
 import 'package:e_commerce/Cubit/sign_up_cubit/sign_up_state.dart';
@@ -8,6 +9,7 @@ import 'package:e_commerce/Widgets/custom_button.dart';
 import 'package:e_commerce/Widgets/custom_text_form_field.dart';
 import 'package:e_commerce/Widgets/my_validators.dart';
 import 'package:e_commerce/Widgets/pick_image_widget.dart';
+import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -21,7 +23,16 @@ class SignUpViewBody extends StatelessWidget {
     var signUpCibit = BlocProvider.of<SignUpCubit>(context);
     var size = MediaQuery.of(context).size;
     return BlocConsumer<SignUpCubit, SignUpState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is SuccessSignUpState) {
+          GoRouter.of(context).pushReplacement(AppRouter.kMainView);
+          CustomToastWidget.showSuccessToast("Success");
+        }
+        if (state is FailureSignUpState) {
+          CustomToastWidget.showErrorToast(state.errMessage);
+          log(state.errMessage);
+        }
+      },
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -127,7 +138,6 @@ class SignUpViewBody extends StatelessWidget {
                       // FocusScope.of(
                       //   context,
                       // ).requestFocus(signUpCibit.passwordNode);
-                      log("Love Mariam");
                     },
                     controller: signUpCibit.confirmPasswordController,
                     keyboardType: TextInputType.text,
@@ -143,21 +153,30 @@ class SignUpViewBody extends StatelessWidget {
                   SizedBox(height: 40),
                   CustomButton(
                     onTap: () {
-                      if (signUpCibit.globalKey.currentState!.validate()) {}
+                      if (signUpCibit.globalKey.currentState!.validate()) {
+                        signUpCibit.globalKey.currentState!.save();
+                        signUpCibit.signUp();
+                      }
                     },
                     borderRadius: 12,
                     color: Colors.grey[200],
                     height: 40,
                     width: double.infinity,
                     child: Center(
-                      child: Text(
-                        Strings.signUp,
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.deepPurple,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: state is LoadingSignUpState
+                          ? SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(),
+                            )
+                          : Text(
+                              Strings.signUp,
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.deepPurple,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                     ),
                   ),
                   SizedBox(height: 50),

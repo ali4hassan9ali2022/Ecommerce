@@ -1,3 +1,4 @@
+import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
 import 'package:e_commerce/Core/Helper/cache_helper.dart';
 import 'package:e_commerce/Core/Theme/theme_mode.dart';
 import 'package:e_commerce/Core/Utils/app_router.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
+  await SupabaseHelper.initSupabase();
   runApp(const EcommerceAp());
 }
 
