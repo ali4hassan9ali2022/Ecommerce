@@ -1,6 +1,10 @@
+import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Core/Utils/strings.dart';
+import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({super.key});
@@ -24,7 +28,10 @@ class CustomAlertDialog extends StatelessWidget {
             children: [
               Expanded(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    CustomToastWidget.showWarningToast("Don't log out");
+                  },
                   child: Text(
                     Strings.cancel,
                     style: TextStyle(color: Colors.red, fontSize: 18),
@@ -33,7 +40,11 @@ class CustomAlertDialog extends StatelessWidget {
               ),
               Expanded(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    SupabaseHelper.supabase.auth.signOut();
+                    GoRouter.of(context).pushReplacement(AppRouter.kSignInView);
+                    CustomToastWidget.showSuccessToast("Log out done");
+                  },
                   child: Text(
                     Strings.ok,
                     style: TextStyle(color: Colors.green, fontSize: 18),

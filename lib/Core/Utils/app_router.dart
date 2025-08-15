@@ -8,6 +8,9 @@ import 'package:e_commerce/Views/products_details_view.dart';
 import 'package:e_commerce/Views/viewed_recently_view.dart';
 import 'package:go_router/go_router.dart';
 
+// ... (imports remain the same)
+import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+
 abstract class AppRouter {
   static const kSignUpView = "/SignUpView";
   static const kSignInView = "/SignInView";
@@ -17,6 +20,7 @@ abstract class AppRouter {
   static const kWishliatView = "/kWishliatView";
   static const kOrdersView = "/kOrdersView";
   static const kForgotViewView = "/kForgotViewView";
+
   static GoRouter router = GoRouter(
     routes: [
       GoRoute(path: "/", builder: (context, state) => LogInView()),
@@ -37,5 +41,22 @@ abstract class AppRouter {
         builder: (context, state) => ForgotPasswordView(),
       ),
     ],
+    redirect: (context, state) {
+      final user = SupabaseHelper.supabase.auth.currentUser;
+      final bool isLoggedIn = user != null;
+      final bool isLoggingIn = state.uri.toString() == '/';
+      if (isLoggedIn) {
+        if (isLoggingIn) {
+          return kMainView;
+        }
+        return null;
+      }
+      else {
+        if (!isLoggingIn && state.uri.toString() != kSignUpView) {
+          return '/';
+        }
+        return null;
+      }
+    },
   );
 }
