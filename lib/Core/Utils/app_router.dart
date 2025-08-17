@@ -1,3 +1,6 @@
+// ... (imports remain the same)
+import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Utils/constants.dart';
 import 'package:e_commerce/Layout/main_view.dart';
 import 'package:e_commerce/Views/Auth/log_in_view.dart';
 import 'package:e_commerce/Views/Auth/sign_up_view.dart';
@@ -7,9 +10,6 @@ import 'package:e_commerce/Views/orders_view.dart';
 import 'package:e_commerce/Views/products_details_view.dart';
 import 'package:e_commerce/Views/viewed_recently_view.dart';
 import 'package:go_router/go_router.dart';
-
-// ... (imports remain the same)
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
 
 abstract class AppRouter {
   static const kSignUpView = "/SignUpView";
@@ -45,13 +45,15 @@ abstract class AppRouter {
       final user = SupabaseHelper.supabase.auth.currentUser;
       final bool isLoggedIn = user != null;
       final bool isLoggingIn = state.uri.toString() == '/';
+      if (Constants.isGuest) {
+        return null;
+      }
       if (isLoggedIn) {
         if (isLoggingIn) {
           return kMainView;
         }
         return null;
-      }
-      else {
+      } else {
         if (!isLoggingIn && state.uri.toString() != kSignUpView) {
           return '/';
         }

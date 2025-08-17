@@ -9,12 +9,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(InitialProfileState());
   UserModel? userModel;
+
   Future<void> fetchProfile() async {
     emit(LoadingProfileState());
     try {
       final user = SupabaseHelper.supabase.auth.currentUser;
       if (user == null) {
-        emit(FailureProfileState(errMessage: "User not logged in"));
+        emit(SuccessProfileState(userModel: UserModel.empty()));
         return;
       }
       final userResponse = await SupabaseHelper.supabase

@@ -46,4 +46,18 @@ class UserModel {
       "createIt": createIt.toIso8601String(),
     };
   }
+
+  factory UserModel.empty() {
+    return UserModel(
+      id: "",
+      name: "",
+      email: "",
+      confirePassword: "",
+      image: "",
+      password: "",
+      userCart: [],
+      userWish: [],
+      createIt: DateTime.now(),
+    );
+  }
 }

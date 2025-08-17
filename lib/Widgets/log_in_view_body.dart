@@ -1,4 +1,5 @@
 import 'package:e_commerce/Core/Utils/app_router.dart';
+import 'package:e_commerce/Core/Utils/constants.dart';
 import 'package:e_commerce/Core/Utils/strings.dart';
 import 'package:e_commerce/Cubit/log_in_cubit/log_in_cubit.dart';
 import 'package:e_commerce/Cubit/log_in_cubit/log_in_state.dart';
@@ -164,7 +165,13 @@ class LogInViewBody extends StatelessWidget {
                       Expanded(
                         flex: 2,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                          Constants.isGuest = true;
+                            GoRouter.of(
+                              context,
+                            ).pushReplacement(AppRouter.kMainView);
+                            CustomToastWidget.showSuccessToast(Strings.guset);
+                          },
                           child: Center(
                             child: Text(
                               Strings.guset,
