@@ -185,7 +185,7 @@ class _ProfileViewState extends State<ProfileView> {
                           onPressed: () async {
                             GoRouter.of(
                               context,
-                            ).pushReplacement(AppRouter.kSignInView);
+                            ).pushReplacement("/");
                           },
                           label: Text(Strings.signIn),
                           icon: Icon(Icons.login),

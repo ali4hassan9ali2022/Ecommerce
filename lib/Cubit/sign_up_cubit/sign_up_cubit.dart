@@ -57,8 +57,8 @@ class SignUpCubit extends Cubit<SignUpState> {
         uuid: uuid,
         profilePic: imagePicker,
         supabase: supabase,
-        imageLinkOne: "SignUp",
-        imageLinkTwo: "SignUp",
+        imageLinkOne: "profile",
+        imageLinkTwo: "profile",
       );
       signUpModel = UserModel(
         id: user.user!.id,

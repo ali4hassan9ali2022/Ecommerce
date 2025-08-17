@@ -44,7 +44,7 @@ abstract class AppHelper {
       try {
         final bytes = await profilePic.readAsBytes();
         final fileName = "$uuid${DateTime.now().millisecondsSinceEpoch}.jpg";
-        final filePath = "images/$fileName";
+        final filePath = "public/$fileName";
 
         final storageResponse = await supabase!.storage
             .from(imageLinkOne)
