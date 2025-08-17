@@ -4,12 +4,12 @@ abstract class ProfileState {}
 
 class InitialProfileState extends ProfileState {}
 
-class LoadingProfileAndPostsState extends ProfileState {}
+class LoadingProfileState extends ProfileState {}
 
-class SuccessProfileAndPostsState extends ProfileState {
+class SuccessProfileState extends ProfileState {
   final UserModel userModel;
 
-  SuccessProfileAndPostsState({required this.userModel});
+  SuccessProfileState({required this.userModel});
 }
 
 class FailureProfileState extends ProfileState {
