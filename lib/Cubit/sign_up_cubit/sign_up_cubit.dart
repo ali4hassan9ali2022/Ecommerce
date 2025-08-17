@@ -67,6 +67,9 @@ class SignUpCubit extends Cubit<SignUpState> {
         image: imageUrl,
         password: passwordController.text,
         confirePassword: confirmPasswordController.text,
+        createIt: DateTime.now(),
+        userCart: [],
+        userWish: [],
       );
       AppHelper.userModel = signUpModel;
       bool isAdd = await SupabaseHelper.addData(

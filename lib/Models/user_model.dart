@@ -5,6 +5,9 @@ class UserModel {
   final String email;
   final String password;
   final String confirePassword;
+  final List userCart;
+  final List userWish;
+  final DateTime createIt;
 
   UserModel({
     required this.id,
@@ -13,6 +16,9 @@ class UserModel {
     required this.email,
     required this.password,
     required this.confirePassword,
+    required this.userCart,
+    required this.userWish,
+    required this.createIt,
   });
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
@@ -22,6 +28,9 @@ class UserModel {
       email: json["email"],
       password: json["password"],
       confirePassword: json["confirePassword"],
+      userCart: json["userCart"],
+      userWish: json["userWish"],
+      createIt: DateTime.parse(json["createIt"]),
     );
   }
   toJson() {
@@ -32,6 +41,9 @@ class UserModel {
       "email": email,
       "password": password,
       "confirePassword": confirePassword,
+      "userCart": userCart,
+      "userWish": userWish,
+      "createIt": createIt.toIso8601String(),
     };
   }
 }
