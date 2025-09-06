@@ -8,6 +8,7 @@ class UserModel {
   final List userCart;
   final List userWish;
   final DateTime createIt;
+  final bool isAdmin;
 
   UserModel({
     required this.id,
@@ -19,6 +20,7 @@ class UserModel {
     required this.userCart,
     required this.userWish,
     required this.createIt,
+    required this.isAdmin
   });
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
@@ -31,6 +33,7 @@ class UserModel {
       userCart: json["userCart"],
       userWish: json["userWish"],
       createIt: DateTime.parse(json["createIt"]),
+      isAdmin: json["isAdmin"]
     );
   }
   toJson() {
@@ -44,6 +47,7 @@ class UserModel {
       "userCart": userCart,
       "userWish": userWish,
       "createIt": createIt.toIso8601String(),
+      "isAdmin": isAdmin
     };
   }
 
@@ -58,6 +62,7 @@ class UserModel {
       userCart: [],
       userWish: [],
       createIt: DateTime.now(),
+      isAdmin: false,
     );
   }
 }

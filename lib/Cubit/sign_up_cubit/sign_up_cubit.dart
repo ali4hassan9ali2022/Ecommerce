@@ -70,6 +70,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         createIt: DateTime.now(),
         userCart: [],
         userWish: [],
+        isAdmin: false
       );
       AppHelper.userModel = signUpModel;
       bool isAdd = await SupabaseHelper.addData(
