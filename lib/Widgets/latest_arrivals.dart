@@ -1,10 +1,10 @@
-import 'package:e_commerce/Core/Utils/constants.dart';
+import 'package:e_commerce/Models/products_models.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
 class LatestArrivals extends StatelessWidget {
-  const LatestArrivals({super.key});
-
+  const LatestArrivals({super.key, required this.productsModels});
+  final ProductsModels productsModels;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -19,7 +19,7 @@ class LatestArrivals extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: FancyShimmerImage(
-                  imageUrl: Constants.imageTestOne,
+                  imageUrl: productsModels.productImage,
                   height: size.width * 0.44,
                   width: size.width * 0.44,
                 ),
@@ -32,7 +32,7 @@ class LatestArrivals extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Title" * 10,
+                    productsModels.productTitle,
                     style: TextStyle(fontSize: 18),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -56,7 +56,7 @@ class LatestArrivals extends StatelessWidget {
                   ),
 
                   Text(
-                    "150\$",
+                    "${productsModels.productPrice}\$",
                     style: TextStyle(
                       fontSize: 20,
                       color: Colors.blue,
