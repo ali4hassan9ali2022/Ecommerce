@@ -2,6 +2,7 @@ import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Cubit/Search_cubit/search_cubit.dart';
 import 'package:e_commerce/Cubit/app_cubit/app_cubit.dart';
 import 'package:e_commerce/Cubit/app_cubit/app_state.dart';
+import 'package:e_commerce/Cubit/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/Cubit/home_cubit/home_cubit.dart';
 import 'package:e_commerce/Cubit/profile_cubit/profile_cubit.dart';
 import 'package:e_commerce/Widgets/app_shimmer%20.dart';
@@ -21,6 +22,7 @@ class MainView extends StatelessWidget {
         BlocProvider<SearchCubit>(create: (context) => SearchCubit()),
         BlocProvider<ProfileCubit>(create: (context) => ProfileCubit()),
         BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
+        BlocProvider<CartCubit>(create: (context) => CartCubit()),
       ],
       child: BlocConsumer<AppCubit, AppState>(
         listener: (context, state) {},

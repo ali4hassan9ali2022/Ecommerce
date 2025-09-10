@@ -2,7 +2,9 @@ abstract class CartState {}
 class CartInitial extends CartState{}
 class LoadingAddProductToCartState extends CartState{}
 class SuccessAddProductToCartState extends CartState{
-  // late final List<Map<String,dynamic>> productsInCart;
+  final String productId;
+
+  SuccessAddProductToCartState({required this.productId});
 }
 class FailureAddProductToCartState extends CartState{
   final String errMessage;

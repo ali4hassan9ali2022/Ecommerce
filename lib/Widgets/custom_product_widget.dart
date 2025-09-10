@@ -1,5 +1,7 @@
-import 'package:e_commerce/Cubit/Search_cubit/search_cubit.dart';
+import 'package:e_commerce/Cubit/cart_cubit/cart_cubit.dart';
+import 'package:e_commerce/Cubit/cart_cubit/cart_state.dart';
 import 'package:e_commerce/Models/products_models.dart';
+import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,73 +11,87 @@ class CustomProductWidget extends StatelessWidget {
   final ProductsModels productsModels;
   @override
   Widget build(BuildContext context) {
-    var searchCubit = BlocProvider.of<SearchCubit>(context);
+    var cartCubit = BlocProvider.of<CartCubit>(context);
     var size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: FancyShimmerImage(
-            imageUrl: productsModels.productImage,
-
-            height: size.height * 0.22,
-          ),
-        ),
-        SizedBox(height: 6),
-        Row(
+    return BlocConsumer<CartCubit, CartState>(
+      listener: (context, state) {
+        if (state is SuccessAddProductToCartState) {
+          CustomToastWidget.showSuccessToast("Product added to cart");
+        } else if (state is FailureAddProductToCartState) {
+          CustomToastWidget.showErrorToast(state.errMessage);
+        }
+      },
+      builder: (context, state) {
+        return Column(
           children: [
-            Flexible(
-              flex: 4,
-              child: Text(
-                productsModels.productTitle,
-                style: TextStyle(fontSize: 18),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            Flexible(
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.favorite, color: Colors.red),
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 6),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Flexible(
-              child: Text(
-                "${productsModels.productPrice}\$",
-                style: TextStyle(fontSize: 16, color: Colors.blue),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: FancyShimmerImage(
+                imageUrl: productsModels.productImage,
 
-                overflow: TextOverflow.ellipsis,
+                height: size.height * 0.22,
               ),
             ),
-            Flexible(
-              child: IconButton.filled(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
-                  minimumSize: Size(20, 20),
+            SizedBox(height: 6),
+            Row(
+              children: [
+                Flexible(
+                  flex: 4,
+                  child: Text(
+                    productsModels.productTitle,
+                    style: TextStyle(fontSize: 18),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                onPressed: () {
-                  searchCubit.addProductToMyCart(
-                    productId: productsModels.productId,
-                    quantity: 1,
-                  );
-                },
-                icon: Icon(
-                  Icons.add_shopping_cart_rounded,
-                  size: 18,
-                  color: Colors.white,
+                Flexible(
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.favorite, color: Colors.red),
+                  ),
                 ),
-              ),
+              ],
             ),
+            SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Text(
+                    "${productsModels.productPrice}\$",
+                    style: TextStyle(fontSize: 16, color: Colors.blue),
+
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Flexible(
+                  child: IconButton.filled(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      minimumSize: Size(20, 20),
+                    ),
+                    onPressed: () {
+                      cartCubit.addProductToMyCart(
+                        productId: productsModels.productId,
+                        quantity: 1,
+                      );
+                    },
+                    icon: Icon(
+                      state is SuccessAddProductToCartState &&
+                              state.productId == productsModels.productId
+                          ? Icons.check
+                          : Icons.add_shopping_cart_rounded,
+                      size: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
           ],
-        ),
-        SizedBox(height: 10),
-      ],
+        );
+      },
     );
   }
 }
