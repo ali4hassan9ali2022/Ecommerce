@@ -7,7 +7,7 @@ class SearchInitial extends SearchState {}
 class LoadingSearchState extends SearchState {}
 
 class SuccessSearchState extends SearchState {
-  final ProductsModels products;
+  final List<ProductsModels> products;
 
   SuccessSearchState({required this.products});
 }
