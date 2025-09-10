@@ -11,14 +11,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class SearchView extends StatelessWidget {
+class SearchView extends StatefulWidget {
   const SearchView({super.key});
+
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    BlocProvider.of<SearchCubit>(context).fetchProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
     var searchCubit = BlocProvider.of<SearchCubit>(context);
-    return BlocConsumer<SearchCubit, SearchState>(
-      listener: (context, state) {},
+    return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -45,28 +59,40 @@ class SearchView extends StatelessWidget {
                 ),
               ),
               SliverToBoxAdapter(child: SizedBox(height: 15)),
-              SliverFillRemaining(
-                child: DynamicHeightGridView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  builder: (context, index) => InkWell(
-                    onTap: () async {
-                      await GoRouter.of(
-                        context,
-                      ).push(AppRouter.kProductsDetails);
-                      // await Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => ProductsDetailsView(),
-                      //   ),
-                      // );
-                    },
-                    child: CustomProductWidget(),
-                  ),
-                  itemCount: 100,
-                  crossAxisCount: 2,
-                ),
-              ),
+              state is SuccessSearchState
+                  ? SliverFillRemaining(
+                      child: DynamicHeightGridView(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        builder: (context, index) => InkWell(
+                          onTap: () async {
+                            await GoRouter.of(
+                              context,
+                            ).push(AppRouter.kProductsDetails);
+                            // await Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => ProductsDetailsView(),
+                            //   ),
+                            // );
+                          },
+                          child: CustomProductWidget(
+                            productsModels: state.products[index],
+                          ),
+                        ),
+                        itemCount: state.products.length,
+                        crossAxisCount: 2,
+                      ),
+                    )
+                  : state is LoadingSearchState
+                  ? SliverFillRemaining(
+                      child: Center(child: CircularProgressIndicator()),
+                    )
+                  : state is FailureSearchState
+                  ? SliverFillRemaining(
+                      child: Center(child: Text(state.errMessage)),
+                    )
+                  : SizedBox(),
             ],
           ),
         );
