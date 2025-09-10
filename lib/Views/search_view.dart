@@ -60,7 +60,7 @@ class _SearchViewState extends State<SearchView> {
               ),
               SliverToBoxAdapter(child: SizedBox(height: 15)),
               state is SuccessSearchState
-                  ? SliverFillRemaining(
+                  ? SliverToBoxAdapter(
                       child: DynamicHeightGridView(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
@@ -69,12 +69,6 @@ class _SearchViewState extends State<SearchView> {
                             await GoRouter.of(
                               context,
                             ).push(AppRouter.kProductsDetails);
-                            // await Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => ProductsDetailsView(),
-                            //   ),
-                            // );
                           },
                           child: CustomProductWidget(
                             productsModels: state.products[index],
@@ -92,7 +86,7 @@ class _SearchViewState extends State<SearchView> {
                   ? SliverFillRemaining(
                       child: Center(child: Text(state.errMessage)),
                     )
-                  : SizedBox(),
+                  : SliverToBoxAdapter(child: SizedBox()),
             ],
           ),
         );

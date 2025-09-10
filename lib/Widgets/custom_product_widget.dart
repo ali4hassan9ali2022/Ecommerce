@@ -1,12 +1,15 @@
+import 'package:e_commerce/Cubit/Search_cubit/search_cubit.dart';
 import 'package:e_commerce/Models/products_models.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomProductWidget extends StatelessWidget {
   const CustomProductWidget({super.key, required this.productsModels});
   final ProductsModels productsModels;
   @override
   Widget build(BuildContext context) {
+    var searchCubit = BlocProvider.of<SearchCubit>(context);
     var size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -56,7 +59,12 @@ class CustomProductWidget extends StatelessWidget {
                   backgroundColor: Colors.blueAccent,
                   minimumSize: Size(20, 20),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  searchCubit.addProductToMyCart(
+                    productId: productsModels.productId,
+                    quantity: 1,
+                  );
+                },
                 icon: Icon(
                   Icons.add_shopping_cart_rounded,
                   size: 18,

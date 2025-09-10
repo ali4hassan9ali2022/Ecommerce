@@ -18,7 +18,7 @@ class FailureSearchState extends SearchState {
 }
 class LoadingAddProductToCartState extends SearchState{}
 class SuccessAddProductToCartState extends SearchState{
-  late final List<Map<String,dynamic>> productsInCart;
+  // late final List<Map<String,dynamic>> productsInCart;
 }
 class FailureAddProductToCartState extends SearchState{
   final String errMessage;
