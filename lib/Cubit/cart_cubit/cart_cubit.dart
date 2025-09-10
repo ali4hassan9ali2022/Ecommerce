@@ -2,6 +2,7 @@ import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
 import 'package:e_commerce/Cubit/cart_cubit/cart_state.dart';
 import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:uuid/uuid.dart';
 
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
@@ -13,6 +14,7 @@ class CartCubit extends Cubit<CartState> {
     emit(LoadingAddProductToCartState());
 
     final user = SupabaseHelper.supabase.auth.currentUser;
+    final cartId = const Uuid().v4();
     if (user == null) {
       emit(FailureAddProductToCartState(errMessage: "User not found"));
       CustomToastWidget.showWarningToast("User not found");
@@ -20,7 +22,6 @@ class CartCubit extends Cubit<CartState> {
     }
 
     try {
-      // 1. جيب الـ userCart الحالي
       final response = await SupabaseHelper.supabase
           .from("users")
           .select("userCart")
@@ -28,22 +29,20 @@ class CartCubit extends Cubit<CartState> {
           .single();
 
       List<dynamic> currentCart = response["userCart"] ?? [];
-
-      // 2. شوف المنتج موجود ولا لأ
       int index = currentCart.indexWhere(
         (item) => item["productId"] == productId,
       );
 
       if (index != -1) {
-        // لو موجود، نزود الكمية
         currentCart[index]["quantity"] =
             (currentCart[index]["quantity"] ?? 0) + quantity;
       } else {
-        // لو مش موجود، نضيفه جديد
-        currentCart.add({"productId": productId, "quantity": quantity});
+        currentCart.add({
+          "cartId": cartId,
+          "productId": productId,
+          "quantity": quantity,
+        });
       }
-
-      // 3. اعمل update للـ userCart
       await SupabaseHelper.supabase
           .from("users")
           .update({"userCart": currentCart})
