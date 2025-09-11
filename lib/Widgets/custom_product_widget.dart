@@ -73,7 +73,6 @@ class CustomProductWidget extends StatelessWidget {
                     onPressed: () {
                       cartCubit.addProductToMyCart(
                         productId: productsModels.productId,
-                        quantity: 1,
                       );
                     },
                     icon: Icon(

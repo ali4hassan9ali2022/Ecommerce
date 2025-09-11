@@ -5,11 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 class CustomCart extends StatelessWidget {
-  const CustomCart({super.key});
+  const CustomCart({super.key, required this.cartItem});
+  final Map<String, dynamic> cartItem;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    final productDetails = cartItem['products'];
+    final productName = productDetails['productTitle'] ?? "N/A";
+    final productPrice = productDetails['productPrice'] ?? 0;
+    final productImage =
+        productDetails['productImage'] ?? Constants.imageTestOne;
+    final productQuantity = cartItem['quantity'] ?? 0;
     return FittedBox(
       child: IntrinsicWidth(
         child: Row(
@@ -17,7 +24,7 @@ class CustomCart extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: FancyShimmerImage(
-                imageUrl: Constants.imageTestOne,
+                imageUrl: productImage,
                 width: size.height * 0.3,
                 height: size.height * 0.3,
               ),
@@ -32,7 +39,7 @@ class CustomCart extends StatelessWidget {
                       SizedBox(
                         width: size.width * 0.6,
                         child: Text(
-                          "Title" * 10,
+                          productName,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -57,7 +64,7 @@ class CustomCart extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "10\$",
+                          "$productPrice\$",
                           style: TextStyle(fontSize: 20, color: Colors.blue),
                         ),
                         OutlinedButton.icon(
@@ -78,7 +85,7 @@ class CustomCart extends StatelessWidget {
                               },
                             );
                           },
-                          label: Text("Oty: 6"),
+                          label: Text("Oty: $productQuantity"),
                           icon: Icon(IconlyLight.arrowDown),
                         ),
                       ],
