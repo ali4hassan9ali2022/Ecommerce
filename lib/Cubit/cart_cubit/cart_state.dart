@@ -35,3 +35,12 @@ class FailureClearCartState extends CartState {
   final String errMessage;
   FailureClearCartState({required this.errMessage});
 }
+class LoadingRemoveProductFromCartState extends CartState {}
+class SuccessRemoveProductFromCartState extends CartState {
+  final String productId;
+  SuccessRemoveProductFromCartState({required this.productId});
+}
+class FailureRemoveProductFromCartState extends CartState {
+  final String errMessage;
+  FailureRemoveProductFromCartState({required this.errMessage});
+}

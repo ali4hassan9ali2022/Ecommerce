@@ -100,4 +100,30 @@ class CartCubit extends Cubit<CartState> {
       emit(FailureClearCartState(errMessage: e.toString()));
     }
   }
+
+  //! Delete Product from cart
+  Future<void> removeProductFromCart({required String productId}) async {
+    emit(LoadingRemoveProductFromCartState());
+    try {
+      final user = SupabaseHelper.supabase.auth.currentUser;
+      if (user == null) {
+        emit(
+          FailureRemoveProductFromCartState(errMessage: "User not logged in"),
+        );
+        return;
+      }
+
+      await SupabaseHelper.supabase
+          .from("cart")
+          .delete()
+          .eq('userId', user.id)
+          .eq('productId', productId);
+
+      emit(SuccessRemoveProductFromCartState(productId: productId));
+      log("Product removed from cart successfully: $productId");
+    } catch (e) {
+      log(e.toString());
+      emit(FailureRemoveProductFromCartState(errMessage: e.toString()));
+    }
+  }
 }
