@@ -29,3 +29,9 @@ class FailureGetCartItemsState extends CartState {
 
   FailureGetCartItemsState({required this.errMessage});
 }
+class LoadingClearCartState extends CartState {}
+class SuccessClearCartState extends CartState {}
+class FailureClearCartState extends CartState {
+  final String errMessage;
+  FailureClearCartState({required this.errMessage});
+}

@@ -27,6 +27,7 @@ abstract class AppHelper {
     CategoryModel(id: "7", image: Assets.imagesBookImg, title: "Books"),
     CategoryModel(id: "8", image: Assets.imagesFashion, title: "Clothes"),
   ];
+ 
   static Future<String> uploadImageToStorage({
     required XFile? profilePic,
     required SupabaseClient? supabase,
@@ -38,6 +39,9 @@ abstract class AppHelper {
     if (currentUser == null) {
       throw Exception("حدث خطأ أثناء التسجيل، لم يتم المصادقة على المستخدم.");
     }
+
+    // ✨ 2. إعداد الصورة الافتراضية أو رفع صورة المستخدم
+
     String imageUrl = "Assets/Images/737064202.png";
 
     if (profilePic != null) {
@@ -72,3 +76,45 @@ abstract class AppHelper {
     // GoRouter.of(context).pushReplacement(AppRouter.kSignInView);
   }
 }
+
+
+
+ // static Future<String> uploadImageToStorage({
+  //   required XFile? profilePic,
+  //   required SupabaseClient? supabase,
+  //   required String imageLinkOne,
+  //   required String imageLinkTwo,
+  //   required String uuid,
+  // }) async {
+  //   final currentUser = Supabase.instance.client.auth.currentUser;
+  //   if (currentUser == null) {
+  //     throw Exception("حدث خطأ أثناء التسجيل، لم يتم المصادقة على المستخدم.");
+  //   }
+  //   String imageUrl = "Assets/Images/737064202.png";
+
+  //   if (profilePic != null) {
+  //     try {
+  //       final bytes = await profilePic.readAsBytes();
+  //       final fileName = "$uuid${DateTime.now().millisecondsSinceEpoch}.jpg";
+  //       final filePath = "public/$fileName";
+
+  //       final storageResponse = await supabase!.storage
+  //           .from(imageLinkOne)
+  //           .uploadBinary(filePath, bytes);
+
+  //       if (storageResponse.isNotEmpty) {
+  //         final publicUrl = supabase.storage
+  //             .from(imageLinkTwo)
+  //             .getPublicUrl(filePath);
+
+  //         imageUrl = publicUrl;
+  //         log("✅ Image URL: $imageUrl");
+  //       } else {
+  //         log("❌ Image upload failed: empty response");
+  //       }
+  //     } catch (e) {
+  //       log("❌ Image upload failed: $e");
+  //     }
+  //   }
+  //   return imageUrl;
+  // }
