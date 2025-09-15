@@ -70,7 +70,7 @@ class CartCubit extends Cubit<CartState> {
           .from("cart")
           .select(
             '*, products(productId, productTitle, productPrice, productImage, productCategory, productDescription)',
-          ) 
+          )
           .eq('userId', user.id);
 
       emit(SuccessGetCartItemsState(cartItems: response));
@@ -80,8 +80,24 @@ class CartCubit extends Cubit<CartState> {
       emit(FailureGetCartItemsState(errMessage: e.toString()));
     }
   }
+
   //! Clear Cart
-  Future<void> clearCart() async{
-    
+  Future<void> clearCart() async {
+    emit(LoadingClearCartState());
+    try {
+      final user = SupabaseHelper.supabase.auth.currentUser;
+      if (user == null) {
+        emit(FailureClearCartState(errMessage: "User not logged in"));
+        return;
+      }
+
+      await SupabaseHelper.supabase.from("cart").delete().eq('userId', user.id);
+
+      emit(SuccessClearCartState());
+      log("Cart cleared successfully.");
+    } catch (e) {
+      log(e.toString());
+      emit(FailureClearCartState(errMessage: e.toString()));
+    }
   }
 }
