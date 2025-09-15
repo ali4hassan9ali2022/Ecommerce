@@ -1,19 +1,21 @@
 import 'package:e_commerce/Core/Utils/constants.dart';
+import 'package:e_commerce/Cubit/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/Widgets/quantity_bottom_sheet.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 
 class CustomCart extends StatelessWidget {
   const CustomCart({super.key, required this.cartItem});
   final Map<String, dynamic> cartItem;
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     final productDetails = cartItem['products'];
     final productName = productDetails['productTitle'] ?? "N/A";
     final productPrice = productDetails['productPrice'] ?? 0;
+    final productId = productDetails['productId'] ?? 0;
     final productImage =
         productDetails['productImage'] ?? Constants.imageTestOne;
     final productQuantity = cartItem['quantity'] ?? 0;
@@ -47,9 +49,14 @@ class CustomCart extends StatelessWidget {
                       Column(
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              BlocProvider.of<CartCubit>(
+                                context,
+                              ).removeProductFromCart(productId: productId);
+                            },
                             icon: Icon(Icons.clear, color: Colors.red),
                           ),
+
                           IconButton(
                             onPressed: () {},
                             icon: Icon(Icons.favorite, color: Colors.red),

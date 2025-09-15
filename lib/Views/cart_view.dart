@@ -5,6 +5,7 @@ import 'package:e_commerce/Cubit/cart_cubit/cart_state.dart';
 import 'package:e_commerce/Widgets/custom_cart.dart';
 import 'package:e_commerce/Widgets/custom_cart_checkout.dart';
 import 'package:e_commerce/Widgets/custom_empty_cart.dart';
+import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,9 +34,16 @@ class _CartViewState extends State<CartView> {
       return CustomEmptyCart(image: Assets.imagesShoes);
     }
 
-    return BlocBuilder<CartCubit, CartState>(
+    return BlocConsumer<CartCubit, CartState>(
+      listener: (context, state) async {
+        if (state is SuccessRemoveProductFromCartState) {
+          CustomToastWidget.showSuccessToast("Delete product successful");
+          await BlocProvider.of<CartCubit>(context).getCartItems();
+        } else if (state is FailureRemoveProductFromCartState) {
+          CustomToastWidget.showErrorToast("Delete product failed");
+        }
+      },
       builder: (context, state) {
-        // هنا بيتحقق من الحالات الصحيحة اللي بتيجي من getCartItems()
         if (state is LoadingGetCartItemsState) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is SuccessGetCartItemsState) {
@@ -52,9 +60,7 @@ class _CartViewState extends State<CartView> {
                     final item = cartItems[index];
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: CustomCart(
-                        cartItem: item,
-                      ),
+                      child: CustomCart(cartItem: item),
                     );
                   },
                 ),

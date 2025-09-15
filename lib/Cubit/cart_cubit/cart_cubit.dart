@@ -103,7 +103,6 @@ class CartCubit extends Cubit<CartState> {
 
   //! Delete Product from cart
   Future<void> removeProductFromCart({required String productId}) async {
-    emit(LoadingRemoveProductFromCartState());
     try {
       final user = SupabaseHelper.supabase.auth.currentUser;
       if (user == null) {
@@ -120,6 +119,7 @@ class CartCubit extends Cubit<CartState> {
           .eq('productId', productId);
 
       emit(SuccessRemoveProductFromCartState(productId: productId));
+
       log("Product removed from cart successfully: $productId");
     } catch (e) {
       log(e.toString());

@@ -3,12 +3,14 @@ import 'dart:developer';
 import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Models/category_model.dart';
+import 'package:e_commerce/Models/products_models.dart';
 import 'package:e_commerce/Models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class AppHelper {
+  static ProductsModels? productsModels;
   static UserModel? userModel;
   static const String kDark = "isDark";
   static bool isDark = false;
