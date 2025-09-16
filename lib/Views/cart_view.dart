@@ -71,8 +71,6 @@ class _CartViewState extends State<CartView> {
         } else if (state is FailureGetCartItemsState) {
           return Center(child: Text("Error: ${state.errMessage}"));
         }
-
-        // دي حالة احتياطية أو الحالة الأولية
         return const Center(child: Text("Your cart is empty"));
       },
     );

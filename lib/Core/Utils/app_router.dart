@@ -1,6 +1,7 @@
 // ... (imports remain the same)
 import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
 import 'package:e_commerce/Core/Utils/constants.dart';
+import 'package:e_commerce/Cubit/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce/Layout/main_view.dart';
 import 'package:e_commerce/Views/Auth/log_in_view.dart';
 import 'package:e_commerce/Views/Auth/sign_up_view.dart';
@@ -9,6 +10,7 @@ import 'package:e_commerce/Views/forgot_password_view.dart';
 import 'package:e_commerce/Views/orders_view.dart';
 import 'package:e_commerce/Views/products_details_view.dart';
 import 'package:e_commerce/Views/viewed_recently_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 abstract class AppRouter {
@@ -34,7 +36,15 @@ abstract class AppRouter {
         path: kViewdRecentlyView,
         builder: (context, state) => ViewedRecentlyView(),
       ),
-      GoRoute(path: kWishliatView, builder: (context, state) => WishliatView()),
+      GoRoute(
+        path: AppRouter.kWishliatView,
+        builder: (context, state) {
+          return BlocProvider.value(
+            value: context.read<FavoriteCubit>(),
+            child: const WishliatView(),
+          );
+        },
+      ),
       GoRoute(path: kOrdersView, builder: (context, state) => OrdersView()),
       GoRoute(
         path: kForgotViewView,

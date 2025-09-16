@@ -1,0 +1,114 @@
+import 'package:e_commerce/Cubit/cart_cubit/cart_cubit.dart';
+import 'package:e_commerce/Cubit/cart_cubit/cart_state.dart';
+import 'package:e_commerce/Cubit/favorite_cubit/favorite_cubit.dart';
+import 'package:e_commerce/Cubit/favorite_cubit/favorite_state.dart';
+import 'package:e_commerce/Widgets/toast_widget.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class CustomFavoriteWidget extends StatelessWidget {
+  const CustomFavoriteWidget({super.key, required this.cartItem});
+  final Map<String, dynamic> cartItem;
+  @override
+  Widget build(BuildContext context) {
+    final productDetails = cartItem['products'];
+    final productTitle = productDetails['productTitle'] ?? "N/A";
+    final productPrice = productDetails['productPrice'] ?? 0;
+    final productId = productDetails['productId'] ?? 0;
+    final productImage = productDetails['productImage'] ?? "";
+    // final productQuantity = cartItem['quantity'] ?? 0;
+    var cartCubit = BlocProvider.of<CartCubit>(context);
+    var favCubit = BlocProvider.of<FavoriteCubit>(context);
+    var size = MediaQuery.of(context).size;
+    return BlocConsumer<CartCubit, CartState>(
+      listener: (context, state) {
+        if (state is SuccessAddProductToCartState) {
+          CustomToastWidget.showSuccessToast("Product added to cart");
+        } else if (state is FailureAddProductToCartState) {
+          CustomToastWidget.showErrorToast(state.errMessage);
+        }
+      },
+      builder: (context, state) {
+        return Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: FancyShimmerImage(
+                imageUrl: productImage,
+
+                height: size.height * 0.22,
+              ),
+            ),
+            SizedBox(height: 6),
+            Row(
+              children: [
+                Flexible(
+                  flex: 4,
+                  child: Text(
+                    productTitle,
+                    style: TextStyle(fontSize: 18),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                BlocBuilder<FavoriteCubit, FavoriteState>(
+                  builder: (context, state) {
+                    final isFav = favCubit.favoriteProductIds.contains(
+                      productId,
+                    );
+                    return Flexible(
+                      child: IconButton(
+                        onPressed: () {
+                          favCubit.toggleFavorite(productId: productId);
+                        },
+                        icon: Icon(
+                          Icons.favorite,
+                          color: isFav ? Colors.red : Colors.grey,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 6),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: Text(
+                    "$productPrice\$",
+                    style: TextStyle(fontSize: 16, color: Colors.blue),
+
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                Flexible(
+                  child: IconButton.filled(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      minimumSize: Size(20, 20),
+                    ),
+                    onPressed: () {
+                      cartCubit.addProductToMyCart(productId: productId);
+                    },
+                    icon: Icon(
+                      state is SuccessAddProductToCartState &&
+                              state.productId == productId
+                          ? Icons.check
+                          : Icons.add_shopping_cart_rounded,
+                      size: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+          ],
+        );
+      },
+    );
+  }
+}

@@ -89,11 +89,8 @@ class _ProfileViewState extends State<ProfileView> {
                                 await GoRouter.of(
                                   context,
                                 ).push(AppRouter.kWishliatView);
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(builder: (context) => WishliatView()),
-                                // );
                               },
+                              
                               child: CustomListTitleForProfileView(
                                 title: Strings.wishList,
                                 icon: IconlyBold.edit,

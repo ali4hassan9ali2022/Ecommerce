@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
 import 'package:e_commerce/Cubit/favorite_cubit/favorite_state.dart';
+import 'package:e_commerce/Models/products_models.dart';
 import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -68,6 +69,35 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     } catch (e) {
       log(e.toString());
       emit(FailureAddProductToFavoriteState(errMessage: e.toString()));
+    }
+  }
+
+  //! Fetch Data
+  final List<ProductsModels> _favoriteProducts = [];
+  List<ProductsModels> get favoriteProducts => _favoriteProducts;
+  Future<void> getCartItems() async {
+    emit(LoadingFavoriteProductsState());
+    try {
+      final user = SupabaseHelper.supabase.auth.currentUser;
+      if (user == null) {
+        emit(
+          FailureLoadFavoriteProductsState(errMessage: "User not logged in"),
+        );
+        return;
+      }
+
+      final List<Map<String, dynamic>> response = await SupabaseHelper.supabase
+          .from("favorite")
+          .select(
+            '*, products(productId, productTitle, productPrice, productImage, productCategory, productDescription)',
+          )
+          .eq('userId', user.id);
+
+      emit(SuccessLoadFavoriteProductsState(cartItems: response));
+      log("Cart items fetched successfully.");
+    } catch (e) {
+      log(e.toString());
+      emit(FailureLoadFavoriteProductsState(errMessage: e.toString()));
     }
   }
 }
