@@ -1,5 +1,7 @@
 import 'package:e_commerce/Cubit/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/Cubit/cart_cubit/cart_state.dart';
+import 'package:e_commerce/Cubit/favorite_cubit/favorite_cubit.dart';
+import 'package:e_commerce/Cubit/favorite_cubit/favorite_state.dart';
 import 'package:e_commerce/Models/products_models.dart';
 import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
@@ -12,6 +14,7 @@ class CustomProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cartCubit = BlocProvider.of<CartCubit>(context);
+    var favCubit = BlocProvider.of<FavoriteCubit>(context);
     var size = MediaQuery.of(context).size;
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) {
@@ -44,11 +47,25 @@ class CustomProductWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Flexible(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.favorite, color: Colors.red),
-                  ),
+                BlocBuilder<FavoriteCubit, FavoriteState>(
+                  builder: (context, state) {
+                    final isFav = favCubit.favoriteProductIds.contains(
+                      productsModels.productId,
+                    );
+                    return Flexible(
+                      child: IconButton(
+                        onPressed: () {
+                          favCubit.toggleFavorite(
+                            productId: productsModels.productId,
+                          );
+                        },
+                        icon: Icon(
+                          Icons.favorite,
+                          color: isFav ? Colors.red : Colors.grey,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

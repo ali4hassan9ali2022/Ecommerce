@@ -11,6 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
   await SupabaseHelper.initSupabase();
+
   runApp(const EcommerceAp());
 }
 
