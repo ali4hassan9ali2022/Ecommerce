@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Database/Network/supabase_helper.dart';
 import 'package:e_commerce/Cubit/favorite_cubit/favorite_state.dart';
 import 'package:e_commerce/Models/products_models.dart';
 import 'package:e_commerce/Widgets/toast_widget.dart';

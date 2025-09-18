@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Database/Network/supabase_helper.dart';
 import 'package:e_commerce/Cubit/cart_cubit/cart_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -57,6 +57,7 @@ class CartCubit extends Cubit<CartState> {
   }
 
   //! Fetch Cart items
+
   Future<void> getCartItems() async {
     emit(LoadingGetCartItemsState());
     try {

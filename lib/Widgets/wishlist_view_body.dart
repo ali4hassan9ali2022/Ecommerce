@@ -1,5 +1,5 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Database/Network/supabase_helper.dart';
 import 'package:e_commerce/Core/Utils/app_router.dart';
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Cubit/favorite_cubit/favorite_cubit.dart';

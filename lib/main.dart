@@ -1,4 +1,4 @@
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Database/Network/supabase_helper.dart';
 import 'package:e_commerce/Core/Helper/cache_helper.dart';
 import 'package:e_commerce/Core/Theme/theme_mode.dart';
 import 'package:e_commerce/Core/Utils/app_router.dart';

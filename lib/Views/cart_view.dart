@@ -1,4 +1,4 @@
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Database/Network/supabase_helper.dart';
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Cubit/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/Cubit/cart_cubit/cart_state.dart';
@@ -65,7 +65,7 @@ class _CartViewState extends State<CartView> {
                   },
                 ),
               ),
-              const CustomCartCheckout(),
+              CustomCartCheckout(),
             ],
           );
         } else if (state is FailureGetCartItemsState) {

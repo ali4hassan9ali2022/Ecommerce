@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Database/Network/supabase_helper.dart';
 import 'package:e_commerce/Core/Utils/assets.dart';
 import 'package:e_commerce/Models/category_model.dart';
 import 'package:e_commerce/Models/products_models.dart';
@@ -71,6 +71,35 @@ abstract class AppHelper {
       }
     }
     return imageUrl;
+  }
+  static int getTotalQuantity(List<Map<String, dynamic>> cartItems) {
+    int totalQuantity = 0;
+    for (var item in cartItems) {
+      final quantityValue = item['quantity'];
+
+      if (quantityValue is int) {
+        totalQuantity += quantityValue;
+      } else if (quantityValue is num) {
+        totalQuantity += quantityValue.toInt();
+      } else if (quantityValue is String) {
+        totalQuantity += int.tryParse(quantityValue) ?? 0;
+      }
+    }
+    return totalQuantity;
+  }
+
+  static double getTotalPrice(List<Map<String, dynamic>> cartItems) {
+    double totalPrice = 0;
+    for (var item in cartItems) {
+      final product = item['products'];
+
+      final productPrice =
+          double.tryParse(product['productPrice'].toString()) ?? 0.0;
+      final quantity = int.tryParse(item['quantity'].toString()) ?? 0;
+
+      totalPrice += productPrice * quantity;
+    }
+    return totalPrice;
   }
 
   static void signOut(BuildContext context) async {

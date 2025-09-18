@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Database/Network/supabase_helper.dart';
 import 'package:e_commerce/Core/Helper/app_helper.dart';
 import 'package:e_commerce/Cubit/sign_up_cubit/sign_up_state.dart';
 import 'package:e_commerce/Models/user_model.dart';

@@ -1,5 +1,5 @@
 // ... (imports remain the same)
-import 'package:e_commerce/Core/Database/Local/supabase_helper.dart';
+import 'package:e_commerce/Core/Database/Network/supabase_helper.dart';
 import 'package:e_commerce/Core/Utils/constants.dart';
 import 'package:e_commerce/Cubit/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce/Layout/main_view.dart';
