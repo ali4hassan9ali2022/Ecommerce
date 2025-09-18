@@ -9,6 +9,7 @@ import 'package:e_commerce/Cubit/app_cubit/app_cubit.dart';
 import 'package:e_commerce/Cubit/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/Cubit/favorite_cubit/favorite_cubit.dart';
 import 'package:e_commerce/Cubit/home_cubit/home_cubit.dart';
+import 'package:e_commerce/Cubit/order_cubit/order_cubit.dart';
 import 'package:e_commerce/Cubit/profile_cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,18 +19,22 @@ void main() async {
   await CacheHelper().init();
   await SupabaseHelper.initSupabase();
 
-  runApp(MultiBlocProvider(
-    providers: [
-       BlocProvider<AppCubit>(create: (context) => AppCubit()),
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AppCubit>(create: (context) => AppCubit()),
         BlocProvider<SearchCubit>(create: (context) => SearchCubit()),
         BlocProvider<ProfileCubit>(create: (context) => ProfileCubit()),
         BlocProvider<HomeCubit>(create: (context) => HomeCubit()),
         BlocProvider<CartCubit>(create: (context) => CartCubit()),
+        BlocProvider<OrderCubit>(create: (context) => OrderCubit()),
         BlocProvider<FavoriteCubit>(
           create: (context) => FavoriteCubit()..loadFavorites(),
         ),
-    ],
-    child: const EcommerceAp()));
+      ],
+      child: const EcommerceAp(),
+    ),
+  );
 }
 
 class EcommerceAp extends StatelessWidget {

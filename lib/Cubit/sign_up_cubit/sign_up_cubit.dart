@@ -7,6 +7,7 @@ import 'package:e_commerce/Models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -70,7 +71,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         createIt: DateTime.now(),
         userCart: [],
         userWish: [],
-        isAdmin: false
+        isAdmin: false,
       );
       AppHelper.userModel = signUpModel;
       bool isAdd = await SupabaseHelper.addData(
@@ -81,6 +82,8 @@ class SignUpCubit extends Cubit<SignUpState> {
       log(isAdd.toString());
 
       emit(SuccessSignUpState());
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString("userName", nameController.text);
     } on AuthApiException catch (error) {
       if (error.message.contains("already registerd") ||
           error.statusCode == 400) {

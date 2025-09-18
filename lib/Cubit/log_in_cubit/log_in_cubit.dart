@@ -6,6 +6,7 @@ import 'package:e_commerce/Cubit/log_in_cubit/log_in_state.dart';
 import 'package:e_commerce/Models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LogInCubit extends Cubit<LogInState> {
@@ -48,6 +49,12 @@ class LogInCubit extends Cubit<LogInState> {
       }
       log(user.toString());
       emit(SuccessSignInState());
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      bool isSave = await prefs.setString(
+        "userName",
+        AppHelper.userModel!.name,
+      );
+      log("is Save: $isSave");
     } on AuthApiException catch (error) {
       final messages = error.message.toLowerCase();
       if (messages.contains("invalid login credentials")) {
