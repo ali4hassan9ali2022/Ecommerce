@@ -19,12 +19,13 @@ class _WishliatViewState extends State<WishliatView> {
   }
 
   void getData() async {
-    BlocProvider.of<FavoriteCubit>(context).getCartItems();
+    await BlocProvider.of<FavoriteCubit>(context).getCartItems();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FavoriteCubit, FavoriteState>(
+    return BlocConsumer<FavoriteCubit, FavoriteState>(
+      listener: (context, state) async {},
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(

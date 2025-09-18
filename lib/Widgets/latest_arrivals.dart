@@ -1,5 +1,7 @@
 import 'package:e_commerce/Cubit/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce/Cubit/cart_cubit/cart_state.dart';
+import 'package:e_commerce/Cubit/favorite_cubit/favorite_cubit.dart';
+import 'package:e_commerce/Cubit/favorite_cubit/favorite_state.dart';
 import 'package:e_commerce/Models/products_models.dart';
 import 'package:e_commerce/Widgets/toast_widget.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
@@ -13,6 +15,7 @@ class LatestArrivals extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var cartCubit = BlocProvider.of<CartCubit>(context);
+    var favCubit = BlocProvider.of<FavoriteCubit>(context);
     return BlocConsumer<CartCubit, CartState>(
       listener: (context, state) {
         if (state is SuccessAddProductToCartState) {
@@ -54,9 +57,22 @@ class LatestArrivals extends StatelessWidget {
                       FittedBox(
                         child: Row(
                           children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite, color: Colors.red),
+                            BlocBuilder<FavoriteCubit, FavoriteState>(
+                              builder: (context, state) {
+                                final isFav = favCubit.favoriteProductIds
+                                    .contains(productsModels.productId);
+                                return IconButton(
+                                  onPressed: () {
+                                    favCubit.toggleFavorite(
+                                      productId: productsModels.productId,
+                                    );
+                                  },
+                                  icon: Icon(
+                                    Icons.favorite,
+                                    color: isFav ? Colors.red : Colors.grey,
+                                  ),
+                                );
+                              },
                             ),
                             IconButton(
                               onPressed: () {
