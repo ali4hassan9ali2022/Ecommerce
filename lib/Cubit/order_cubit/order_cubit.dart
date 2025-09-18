@@ -50,4 +50,31 @@ class OrderCubit extends Cubit<OrderState> {
       emit(FailureOrderState(errMessage: e.toString()));
     }
   }
+
+  Future<void> fetchOrders() async {
+    emit(LoadingFetchOrderState());
+    try {
+      final user = SupabaseHelper.supabase.auth.currentUser;
+      if (user == null) {
+        emit(FailureFetchOrderState(errMessage: "User not logged in"));
+        return;
+      }
+
+      final response = await SupabaseHelper.supabase
+          .from("orders")
+          .select()
+          .eq("userId", user.id) // هات بس أوردرز اليوزر الحالي
+          .order("orderData", ascending: false); // ترتبهم بالأحدث
+
+      final orders = (response as List)
+          .map((json) => OrderModel.formJson(json))
+          .toList();
+
+      emit(SuccessFetchOrderState(orders: orders));
+      log("Fetched Orders: ${orders.length}");
+    } catch (e) {
+      log(e.toString());
+      emit(FailureFetchOrderState(errMessage: e.toString()));
+    }
+  }
 }

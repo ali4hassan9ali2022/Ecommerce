@@ -1,10 +1,11 @@
 import 'package:e_commerce/Core/Utils/constants.dart';
+import 'package:e_commerce/Models/order_model.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
 class CustomOrdersWidget extends StatelessWidget {
-  const CustomOrdersWidget({super.key});
-
+  const CustomOrdersWidget({super.key, required this.orders});
+  final OrderModel orders;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -17,7 +18,7 @@ class CustomOrdersWidget extends StatelessWidget {
             child: FancyShimmerImage(
               height: size.width * 0.25,
               width: size.width * 0.25,
-              imageUrl: Constants.imageTestOne,
+              imageUrl: orders.image ?? Constants.imageTestOne,
             ),
           ),
           Flexible(
@@ -29,9 +30,9 @@ class CustomOrdersWidget extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Flexible(
+                       Flexible(
                         child: Text(
-                          'productTitle',
+                          orders.productTitle,
                           maxLines: 2,
                           style: TextStyle(
                             fontSize: 15,
@@ -49,12 +50,12 @@ class CustomOrdersWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const Row(
+                   Row(
                     children: [
                       Text('Price:  ', style: TextStyle(fontSize: 15)),
                       Flexible(
                         child: Text(
-                          "11.99 \$",
+                          "${orders.price} \$",
                           style: TextStyle(
                             fontSize: 15,
                             color: Colors.blue,
@@ -65,7 +66,7 @@ class CustomOrdersWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 5),
-                  Text("Qty: 10", style: TextStyle(fontSize: 15)),
+                  Text("Qty: ${orders.quantity}", style: TextStyle(fontSize: 15)),
                   // const Row(
                   //   children: [
                   //     Flexible(
